@@ -1,0 +1,5 @@
+include ':app'
+include 'libs:networklibrary'
+rootProject.name='Project_Robot_NanNing'
+include ':libs:lib_base'
+include ':libs:musicplayer'

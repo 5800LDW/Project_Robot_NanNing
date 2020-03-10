@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flAppItemAnswer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top">
+
+    <TextView
+        android:id="@+id/tvAppItemAnswer"
+        android:layout_width="match_parent"
+        android:paddingLeft="@dimen/dimen_15"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:layout_gravity="center|top"
+        android:gravity="center|left"
+        android:textSize="@dimen/dimen_for_40px"
+        tools:text="普通门诊或慢性病"
+        android:layout_marginBottom="1.5dp"
+        android:textColor="@color/c_black"/>
+    <View
+        android:id="@+id/vAppLine"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:visibility="gone"
+        android:layout_gravity="bottom"
+        android:background="@color/c_9fabcb"/>
+
+</FrameLayout>

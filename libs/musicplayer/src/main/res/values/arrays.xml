@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="app_arr_log_out">
+        <item>退出登录</item>
+        <item>退出</item>
+    </string-array>
+
+    <string-array name="app_arr_back">
+        <item>返回</item>
+    </string-array>
+    <string-array name="app_arr_backromain">
+        <item>返回主页</item>
+    </string-array>
+
+    <string-array name="app_arr_next">
+        <item>下一首</item>
+        <item>下一首歌</item>
+        <item>下一个</item>
+    </string-array>
+
+    <string-array name="app_arr_previous">
+        <item>上一首</item>
+        <item>上一首歌</item>
+        <item>上一个</item>
+    </string-array>
+
+    <string-array name="app_arr_song">
+        <item>1</item>
+        <item>第1个</item>
+        <item>第一个</item>
+        <item>第一</item>
+        <item>唱歌</item>
+        <item>唱一首歌</item>
+        <item>唱首歌</item>
+        <item>歌唱</item>
+    </string-array>
+
+    <string-array name="app_arr_dance">
+        <item>2</item>
+        <item>第2个</item>
+        <item>第二个</item>
+        <item>第二</item>
+        <item>舞蹈</item>
+        <item>跳一支舞</item>
+        <item>跳支舞</item>
+        <item>跳舞</item>
+    </string-array>
+
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_weight="1"
+    android:background="@color/c_fae5e7"
+    android:orientation="horizontal">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingLeft="105dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        android:paddingRight="55dp"-->
+<!--        android:paddingBottom="10dp">-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="36dp"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@drawable/base_ic_small_fail" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:gravity="center|left"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:text="@string/base_text_network_fail"-->
+<!--            android:textColor="@color/c_db6b78"-->
+<!--            android:textSize="17dp" />-->
+
+<!--        <ImageView-->
+<!--            android:layout_width="25dp"-->
+<!--            android:layout_height="25dp"-->
+<!--            android:visibility="invisible"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@drawable/base_ic_right_arrow3" />-->
+
+<!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:background="@drawable/base_ic_small_fail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:paddingLeft="20dp"
+            android:text="@string/base_text_network_fail"
+            android:textColor="@color/c_db6b78"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

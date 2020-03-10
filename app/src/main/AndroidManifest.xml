@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tecsun.robot.nanninig">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <permission android:name="android.permission.DEVICE_POWER" />
+
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 自启权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- 声明用户更新权限-->
+    <permission android:name="android.permission.STARTSERVICE"></permission>
+    <!-- 声明用户更新权限 -->
+    <permission android:name="android.permission.RepeatTaskScheduler"></permission>
+    <!-- 添加用户更新权限 -->
+    <uses-permission android:name="android.permission.STARTSERVICE" />
+    <!-- 添加自定义广播权限 -->
+    <uses-permission android:name="android.permission.RepeatTaskScheduler"></uses-permission>
+    <application
+        android:name="com.tecsun.robot.MainApp"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyAppTheme">
+
+        <!--        <meta-data-->
+        <!--            android:name="design_width_in_dp"-->
+        <!--            android:value="360"/>-->
+        <!--        <meta-data-->
+        <!--            android:name="design_height_in_dp"-->
+        <!--            android:value="640"/>-->
+
+        <!-- 全局拦截语音 -->
+        <meta-data
+            android:name="RECOGNIZE_MODE"
+            android:value="1" />
+
+        <activity
+            android:name=".StartPageActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.Start"
+            android:alwaysRetainTaskState="true"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name=".HomePageActivity"
+            android:alwaysRetainTaskState="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name=".ConsultationActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+
+        <activity
+            android:name=".HtmlActivity"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name=".Mainactivity"
+            android:launchMode="singleTop">
+
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name="com.tecsun.robot.dance.DanceMusicListActivity"
+            android:launchMode="singleTop">
+        <meta-data
+            android:name="RECOGNIZE_MODE"
+            android:value="1" />
+        </activity>
+
+        <!--        <activity-->
+        <!--            android:name=".SScardQueryActivity2"-->
+        <!--            android:launchMode="singleTop">-->
+        <!--        </activity>-->
+
+        <activity
+            android:name=".EntertainmentActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name="com.tecsun.robot.dance.DanceActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name="com.example.xukefeng.musicplayer.MusicListActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+
+        <activity
+            android:name=".IdcardActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name=".ChangePassActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+        <activity
+            android:name=".ReadIdcardActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+        <activity
+            android:name=".ReadSScardActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+        <activity
+            android:name=".SSCardManageFragment"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+        <!--        <activity android:name=".JiaofeimingiActivity"  >-->
+
+        <!--        </activity>-->
+        <!--        <activity android:name=".ybxxcxActivity"  >-->
+
+        <!--        </activity>-->
+        <!--        <activity android:name=".ylbxActivity"  >-->
+
+        <!--        </activity>-->
+        <activity
+            android:name=".ReadQrActivity"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+
+        <activity
+            android:name=".GenericActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:enabled="true"
+            android:excludeFromRecents="false"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+        </activity>
+
+
+        <receiver
+            android:name="com.tecsun.robot.Receiver.BootRestartReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

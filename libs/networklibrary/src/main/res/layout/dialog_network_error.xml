@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--警告性弹框-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="515dp"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_top_round_white_shape"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_failure_dialog"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="26sp"
+            android:maxLines="2"
+            android:text="@string/tip_network_error"
+            android:textColor="@color/c_black_2"
+            />
+    </LinearLayout>
+
+    <View style="@style/style_horizontal_line"/>
+    
+    <LinearLayout
+        android:id="@+id/ll_warning_btn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="@drawable/bg_white_gray5_selector">
+        
+        <TextView
+            android:id="@+id/btn_network_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_confirm"
+            android:textColor="@color/c_blue_1"
+            android:textSize="30sp"/>
+        
+    </LinearLayout>
+
+
+
+</LinearLayout>

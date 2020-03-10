@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/shenfenzheng"
+    tools:context=".TestActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+         />
+
+
+    <Button
+        android:id="@+id/button02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:text="读取身份证"></Button>
+
+     <TextView
+         android:id="@+id/tv_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="620px"
+         android:layout_marginTop="410px"
+         android:textSize="16sp"
+         android:textColor="#353535"
+         android:text="张三">
+
+     </TextView>
+    <TextView
+        android:id="@+id/tv_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="620px"
+        android:layout_marginTop="500px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="男">
+    </TextView>
+    <TextView
+        android:id="@+id/tv_nation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="870px"
+        android:layout_marginTop="500px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="汉">
+    </TextView>
+    <TextView
+        android:id="@+id/tv_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="620px"
+        android:layout_marginTop="590px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="2019">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_mouth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="800px"
+        android:layout_marginTop="590px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="10">
+    </TextView>
+    <TextView
+        android:id="@+id/tv_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="910px"
+        android:layout_marginTop="590px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="10">
+    </TextView>
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="620px"
+        android:layout_marginTop="690px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="广西南宁市某某广西南宁市某某广西南宁市某某广西南宁市某某广西南宁市某某广西南宁市某某广西南宁市某某广西南宁市某某">
+    </TextView>
+    <TextView
+        android:id="@+id/tv_idcard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="780px"
+        android:layout_marginTop="930px"
+        android:textSize="16sp"
+        android:textColor="#353535"
+        android:text="213123123213213213131313123">
+    </TextView>
+
+</RelativeLayout>

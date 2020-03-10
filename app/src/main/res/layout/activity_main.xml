@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="450px">
+        <RelativeLayout
+            android:id="@+id/rel_sfz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_sfz"
+                android:layout_width="568px"
+                android:layout_height="374px"
+                android:src="@mipmap/logo_sfz">
+            </ImageView>
+            <TextView
+                android:layout_width="568px"
+                android:layout_height="70px"
+                android:background="@drawable/app_shape_rectangle_blue_bg"
+                android:layout_below="@+id/img_sfz"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_marginTop="50px"
+                android:text="读取身份证">
+
+            </TextView>
+
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/rel_sbk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px">
+            <ImageView
+                android:id="@+id/img_sbk"
+                android:layout_width="568px"
+                android:layout_height="374px"
+                android:src="@mipmap/logo_sbk">
+            </ImageView>
+            <TextView
+                android:layout_width="568px"
+                android:layout_height="70px"
+                android:background="@drawable/app_shape_rectangle_blue_bg"
+                android:layout_below="@+id/img_sbk"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:layout_marginTop="50px"
+                android:text="插入社保卡">
+
+            </TextView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_xgmm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200px"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/logo_xgmm">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="20px"
+            android:textColor="@color/c_017eff"
+            android:text="修改社保卡密码">
+
+        </TextView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:src="@mipmap/logo_xgmmjt">
+
+        </ImageView>
+
+    </LinearLayout>
+
+</RelativeLayout>

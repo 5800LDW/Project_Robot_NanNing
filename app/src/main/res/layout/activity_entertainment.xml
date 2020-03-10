@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/app_home_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:id="@+id/image_retrun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_return_selector"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_title_left_side"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="休闲娱乐"
+            android:textColor="@color/white"
+            android:textSize="50dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_title_right_side"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="900dp"
+        android:layout_height="450dp"
+        android:background="@drawable/app_shape_round_white_bg">
+
+        <RelativeLayout
+            android:id="@+id/ll1"
+            android:layout_width="@dimen/dimen_350"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_btn_sing" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_200"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_150"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ic_bg_sing" />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_150"
+                    android:layout_centerVertical="true"
+                    style="@style/style_button_text"
+                    android:text="1.唱歌" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/ll2"
+            android:layout_width="@dimen/dimen_350"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="100dp">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/ic_btn_dance" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_200"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_150"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/ic_bg_dance" />
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dimen_150"
+                    android:layout_centerVertical="true"
+                    style="@style/style_button_text"
+                    android:text="2.跳舞" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        layout="@layout/item_button_listener"
+        android:layout_width="960dp"
+        android:layout_height="112dp"
+        android:layout_gravity="bottom|center_horizontal" />
+
+</RelativeLayout>

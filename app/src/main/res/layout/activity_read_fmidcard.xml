@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/lin_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_sfz"
+            android:layout_marginTop="50px">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/c_black_1"
+                android:text="请按照图示将社保卡插到设备的">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/c_blue_2"
+                android:text="社保卡入口内 ">
+            </TextView>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_sfz"
+            android:layout_width="600px"
+            android:layout_height="500px"
+            android:layout_centerInParent="true"
+            ></ImageView>
+    </LinearLayout>
+
+
+</RelativeLayout>

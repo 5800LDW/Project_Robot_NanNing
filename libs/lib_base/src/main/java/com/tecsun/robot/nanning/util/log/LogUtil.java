@@ -1,0 +1,69 @@
+package com.tecsun.robot.nanning.util.log;
+
+import android.util.Log;
+
+import com.tecsun.jc.base.utils.log.LogOverLengthInfo;
+import com.tecsun.robot.nanning.lib_base.BuildConfig;
+
+/**
+ * log日志工具类
+ *
+ * @author liudongwen
+ * @version
+ * @date 2019/05/29
+ */
+public class LogUtil {
+
+    public static void i(String tag, Object obj){
+        if(BuildConfig.isRelease){
+            return;
+        }
+
+        if(tag !=null && obj !=null){
+            if(obj.toString().length() > 2000){
+                LogOverLengthInfo.INSTANCE.e(tag,obj);
+            }
+            else{
+                Log.i(tag,obj.toString());
+            }
+        }
+    }
+
+    public static void e(String tag, Object obj){
+        if(BuildConfig.isRelease){
+            return;
+        }
+
+        if(tag !=null && obj !=null){
+            if(obj.toString().length() > 2000){
+                LogOverLengthInfo.INSTANCE.e(tag,obj);
+            }
+            else{
+                Log.e(tag,obj.toString());
+            }
+        }
+    }
+
+    public static void e( Object obj){
+        if(BuildConfig.isRelease){
+            return;
+        }
+
+        if( obj !=null){
+            e("TAG","-------  " + obj.toString() + "  --------");
+        }
+    }
+
+    public static void d(String tag, Object obj){
+        if(BuildConfig.isRelease){
+            return;
+        }
+
+        if( tag!=null && obj !=null){
+            e(tag,obj);
+        }
+    }
+
+
+
+}

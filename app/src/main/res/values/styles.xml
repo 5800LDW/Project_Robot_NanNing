@@ -1,0 +1,122 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--        <item name="colorAccent">@color/colorAccent</item>-->
+    <!--    </style>-->
+    <!--黑色2 22号字体，横向充满权重为1-->
+    <style name="style_black2_22_text" parent="style_match_wrap_content">
+        <item name="android:textColor">@color/c_black_2</item>
+        <item name="android:textSize">@dimen/text_22</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="style_match_wrap_content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!-- START content设置 -->
+    <style name="style_wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.MyAppTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="style_button_pic">
+        <item name="android:layout_width">135dp</item>
+        <item name="android:layout_height">186.975dp</item>
+    </style>
+
+    <style name="style_button_logo">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+    <style name="style_button_logo2">
+        <item name="android:layout_width">269dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="style_button_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">-40dp</item>
+        <item name="android:textSize">@dimen/dimen_for_45px</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="style_text_1">
+        <item name="android:textSize">@dimen/dimen_for_55px</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="style_consultation_button_bg">
+        <item name="android:layout_width">140dp</item>
+        <item name="android:layout_height">53.476dp</item>
+        <item name="android:textSize">@dimen/dimen_for_24px</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/app_button_blue_selector</item>
+    </style>
+
+
+    <style name="Theme.Start" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!--<item name="android:windowBackground">@drawable/ic_start_page</item>-->
+        <item name="android:windowBackground">@color/c_2358ff</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/background_splash</item>
+    </style>
+
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

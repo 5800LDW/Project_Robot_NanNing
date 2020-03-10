@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="c_all_bg">#f3f3f3</color>
+    <color name="c_white">#FFFFFF</color><!--白色 -->
+    <color name="c_blue_01">#23ade5</color>
+    <color name="c_57bd6a">#57bd6a</color>
+    <color name="c_db6b78">#e76875</color>
+    <color name="c_fae5e7">#fae5e7</color>
+    <color name="c_9fabcb">#9fabcb</color>
+
+
+</resources>

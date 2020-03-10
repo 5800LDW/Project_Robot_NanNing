@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="1500px"
+    android:layout_height="wrap_content"
+    android:id="@+id/lin_ylbx2"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/lin_yl_01"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx1">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="养老保险信息查询">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_yl_02"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx2">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="养老保险缴费明细查询">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_yl_03"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx3">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="养老待遇发放信息查询">
+<!--                android:text="个人养老金年度明细查询"-->
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/lin_yl_04"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx4">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="基本养老金记发月数表">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+
+            android:id="@+id/lin_yl_05"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx5">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="养老历年缴费信息查询">
+
+            </TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal">
+        <LinearLayout
+
+            android:id="@+id/lin_yl_06"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx6">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="社平重算单位人员花名册">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+
+            android:id="@+id/lin_yl_07"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx7">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="机关养老个人缴费明细查询">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/lin_yl_08"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx8">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="机关事业单位退休人员领取基本养老金查询">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/lin_yl_09"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx9">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="机关事业单位社会保险个人缴费信息查询">
+
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+
+            android:id="@+id/lin_yl_10"
+            android:layout_width="260px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:layout_marginLeft="50px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:background="@mipmap/logo_ylbx10">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_black_1"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:text="转移信息综合查询">
+
+            </TextView>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

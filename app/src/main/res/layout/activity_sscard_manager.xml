@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/logo_title"
+        android:layout_marginLeft="100px">
+    </TextView>
+    <LinearLayout
+        android:id="@+id/lin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="50px"
+        android:layout_marginLeft="200px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/c_black_1"
+            android:text="首页 > "></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/c_blue_2"
+            android:text="社保卡管理"></TextView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:id="@+id/cl_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="300px"
+        android:layout_marginTop="100px"
+        android:layout_below="@+id/lin_title">
+
+    </LinearLayout>
+
+
+</RelativeLayout>

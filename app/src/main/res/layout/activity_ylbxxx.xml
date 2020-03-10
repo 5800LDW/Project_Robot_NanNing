@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_ywjb_top"></include>
+    </FrameLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lin_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:layout_marginLeft="300px"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/c_black_1"
+            android:text=""></TextView>
+
+        <LinearLayout
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/c_black_1"
+                android:text="单位名称：">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_dwmc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:paddingLeft="10px"
+                android:text=""
+                android:background="@mipmap/edit_bg"
+                android:textColor="@color/c_black_1">
+
+            </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="个人编号：">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_rybh"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+
+                    android:paddingLeft="10px"
+                    android:text=""
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="参保状态：">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_cbzt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="是否代扣：">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_isdg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="是否在职：">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_sfzz"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="人员缴费状态：">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_ryjfzt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="1300px"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="20px">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="异地备案标志：">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/c_black_1"
+                    android:text="人员类别：">
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text=""
+
+                    android:paddingLeft="10px"
+                    android:background="@mipmap/edit_bg"
+                    android:textColor="@color/c_black_1">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin_wxts"
+        android:layout_below="@+id/lin_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="100px"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_marginLeft="300px"
+            android:background="@mipmap/logo_tishi">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_ceng_2"
+            android:textSize="18sp"
+            android:text="温馨提示：">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/lin_wxts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_below="@+id/lin_wxts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/lin_wxts_left"
+            android:layout_marginLeft="300px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/c_black_1"
+                android:text="以上信息如有疑问请联系大厅经办窗口或者拨打">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/c_ceng_2"
+                android:text="12333热线服务电话">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

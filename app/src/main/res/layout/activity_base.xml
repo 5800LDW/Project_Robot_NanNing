@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <LinearLayout
+
+        android:id="@+id/cl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_buttom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/logo_shouyedise">
+
+        <Button
+            android:id="@+id/btn_exit"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:background="@mipmap/btn_tcdl"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_marginLeft="50px"
+            android:text="退出登录"></Button>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginLeft="400px"
+            android:layout_centerVertical="true"
+            android:textColor="@color/c_black_1"
+            android:text="">
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/lin_home"
+            android:layout_width="250px"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="400px"
+            android:background="@mipmap/btn_shouye"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/logo_shouye">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_marginLeft="10px"
+                android:textSize="22sp"
+                android:text="首页"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_back"
+            android:layout_width="250px"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="100px"
+            android:background="@mipmap/btn_fanhui"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/logo_fanhui">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_marginLeft="10px"
+                android:textSize="22sp"
+                android:text="返回"></TextView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

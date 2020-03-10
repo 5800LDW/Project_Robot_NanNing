@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--修改密码步骤显示布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/style_match_wrap_content"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_ywjb_top"></include>
+    </FrameLayout>
+
+    <include layout="@layout/activity_title"
+        android:visibility="gone"></include>
+    <LinearLayout
+        style="@style/style_match_wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dimen_30"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_line_01"
+            style="@style/style_wrap_content"
+            android:layout_width="450px"
+            android:background="@drawable/ic_existed_line"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_step_01"
+            android:layout_height="@dimen/dimen_60"
+            android:layout_width="@dimen/dimen_60"
+            android:background="@drawable/ic_old_pwd_press"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_line_02"
+            style="@style/style_wrap_content"
+            android:layout_width="360px"
+            android:background="@drawable/ic_not_exist_arrow"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_step_02"
+
+            android:layout_height="@dimen/dimen_60"
+            android:layout_width="@dimen/dimen_60"
+            android:background="@drawable/ic_new_pwd_normal"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_line_03"
+            style="@style/style_wrap_content"
+            android:layout_width="360px"
+            android:background="@drawable/ic_not_exist_arrow"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_step_03"
+            android:layout_height="@dimen/dimen_60"
+            android:layout_width="@dimen/dimen_60"
+            android:background="@drawable/ic_new_pwd_normal"
+            android:contentDescription="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_change_pwd_line_04"
+            style="@style/style_wrap_content"
+            android:layout_width="450px"
+            android:background="@drawable/ic_not_exist_line"
+            android:contentDescription="@null"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/style_match_wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginLeft="280px"
+        android:layout_marginRight="260px"
+        android:baselineAligned="false">
+
+        <TextView
+            android:id="@+id/tv_change_pwd_01"
+            style="@style/style_black2_22_text"
+            android:text="@string/input_old_pwd"
+            android:textColor="@color/c_blue_1" />
+
+        <TextView
+            android:id="@+id/tv_change_pwd_02"
+            style="@style/style_black2_22_text"
+            android:text="@string/input_new_pwd" />
+
+        <TextView
+            android:id="@+id/tv_change_pwd_03"
+            style="@style/style_black2_22_text"
+            android:text="@string/input_confirm_pwd" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_marginTop="100px"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:maxLength="6"
+        android:digits="1234567890."
+        android:padding="10px"
+        android:background="@mipmap/edit_bg"
+        android:singleLine="true"
+        android:layout_marginLeft="750px"></EditText>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="500px"
+        android:layout_height="70px"
+        android:layout_marginLeft="750px"
+        android:background="@drawable/app_shape_rectangle_blue_bg"
+        android:layout_below="@+id/img_sfz"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:layout_marginTop="50px"
+        android:text="确认">
+
+    </Button>
+
+</LinearLayout>

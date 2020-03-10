@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flBG"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_home_background"
+    tools:background="@drawable/app_home_background">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-100dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="-70dp">
+
+            <include layout="@layout/item_logo" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="100dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/style_button_pic"
+                        android:background="@drawable/app_ic_function1" />
+
+                    <TextView
+                        android:id="@+id/tvFunction01"
+                        style="@style/style_button_text"
+                        tools:text="1.业务咨询"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="4" />
+
+                <LinearLayout
+                    android:id="@+id/ll02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/style_button_pic"
+                        android:background="@drawable/app_ic_function2" />
+
+                    <TextView
+                        android:id="@+id/tvFunction02"
+                        style="@style/style_button_text"
+                        tools:text="2.业务办理" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:id="@+id/ll03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/style_button_pic"
+                        android:background="@drawable/app_ic_function3" />
+
+                    <TextView
+                        android:id="@+id/tvFunction03"
+                        style="@style/style_button_text"
+                        tools:text="3.政策法规" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="4" />
+
+                <LinearLayout
+                    android:id="@+id/ll04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        style="@style/style_button_pic"
+                        android:background="@drawable/app_ic_function4" />
+
+                    <TextView
+                        android:id="@+id/tvFunction04"
+                        style="@style/style_button_text"
+                        tools:text="4.休闲娱乐" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="110dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/app_text_example１"
+                android:textColor="@color/c_fdbd02"
+                android:textSize="@dimen/dimen_for_30px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/app_text_example2"
+                android:textColor="@color/c_fdbd02"
+                android:textSize="@dimen/dimen_for_30px" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+    <include
+        layout="@layout/item_button_listener"
+        android:layout_width="960dp"
+        android:layout_height="112dp"
+        android:layout_gravity="bottom|center_horizontal" />
+
+
+</FrameLayout>

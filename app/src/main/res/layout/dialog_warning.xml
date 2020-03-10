@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--警告性弹框-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="@dimen/dimen_515"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_240"
+        android:orientation="vertical"
+        android:background="@drawable/bg_top_round_white_shape"
+        android:padding="@dimen/dimen_20"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_warning_icon"
+            style="@style/style_wrap_content"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/tv_warning_content"
+            style="@style/style_wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:gravity="center"
+
+            android:textSize="@dimen/text_26"
+            android:maxLines="2"
+            android:textColor="@color/c_black_2"
+            />
+    </LinearLayout>
+
+    <View style="@style/style_horizontal_line"/>
+    
+    <LinearLayout
+        android:id="@+id/ll_warning_btn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_80"
+        android:gravity="center"
+        android:background="@drawable/bg_white_gray5_selector">
+        
+        <TextView
+            android:id="@+id/tv_warning_btn"
+            style="@style/style_wrap_content"
+            android:text="@string/btn_determine"
+            android:textColor="@color/c_blue_1"
+            android:textSize="@dimen/text_30"/>
+        
+    </LinearLayout>
+
+
+
+</LinearLayout>

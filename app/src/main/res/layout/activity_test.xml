@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/shebaoka"
+    tools:context=".TestActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+         />
+
+
+    <Button
+        android:id="@+id/button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:text="读取社保卡"></Button>
+
+    <Button
+        android:id="@+id/button02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300px"
+        android:text="读取身份证"></Button>
+    <Button
+        android:id="@+id/button03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500px"
+        android:text="验证社保卡密码"></Button>
+    <Button
+        android:id="@+id/button04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600px"
+        android:text="修改社保卡密码"></Button>
+
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="850px"
+         android:layout_marginTop="508px"
+         android:textSize="16sp"
+
+         android:textColor="#353535"
+         android:text="张三">
+
+     </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1000px"
+        android:layout_marginTop="568px"
+        android:textSize="16sp"
+
+        android:textColor="#353535"
+        android:text="1213123123123123123213">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="620px"
+        android:layout_marginTop="850px"
+        android:textSize="25sp"
+        android:textColor="#000"
+        android:text="21321321432432423424">
+
+    </TextView>
+
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/fl_activity_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="243px">
+           </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/logo_shouyedise">
+
+        <Button
+            android:id="@+id/btn_exit"
+            android:layout_width="300px"
+            android:layout_height="100px"
+            android:background="@mipmap/btn_tcdl"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:layout_marginLeft="50px"
+            android:text="退出登录"></Button>
+
+        <LinearLayout
+            android:layout_toRightOf="@+id/btn_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/c_black_1"
+                android:text="11"/>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:layout_centerVertical="true"
+                android:textColor="@color/c_red_1"
+                android:text="">
+            </TextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin_home"
+            android:layout_width="250px"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="400px"
+            android:background="@mipmap/btn_shouye"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/logo_shouye">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_marginLeft="10px"
+                android:textSize="22sp"
+                android:text="首页"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_back"
+            android:layout_width="250px"
+            android:layout_height="100px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="100px"
+            android:background="@mipmap/btn_fanhui"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/logo_fanhui">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:layout_marginLeft="10px"
+                android:textSize="22sp"
+                android:text="返回"></TextView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

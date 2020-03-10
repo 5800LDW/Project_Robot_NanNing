@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flListenerLogo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:paddingBottom="@dimen/dimen_5">
+
+    <FrameLayout
+        android:layout_width="503.125dp"
+        android:layout_height="607.5dp"
+        android:layout_gravity="center">
+        <!--        <ImageView-->
+        <!--            android:id="@+id/ivRobot2"-->
+        <!--            android:visibility="gone"-->
+        <!--            android:layout_width="503.125dp"-->
+        <!--            android:layout_marginTop="50.5dp"-->
+        <!--            android:layout_height="550dp"-->
+        <!--            android:layout_gravity="center|bottom"-->
+        <!--            tools:background="@mipmap/app_gif_listening_robot" />-->
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/ivRobot2"
+            android:layout_width="503.125dp"
+            android:layout_height="550dp"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/app_gif_listening_robot"
+            android:gravity="center|bottom" />
+
+    </FrameLayout>
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/ivRobot1"-->
+    <!--        android:layout_width="503.125dp"-->
+    <!--        android:layout_height="607.5dp"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:background="@drawable/app_ic_robot_"/>-->
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/ivRobot1"
+        android:layout_width="503.125dp"
+        android:layout_height="607.5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/app_ic_robot_" />
+
+
+    <TextView
+        android:id="@+id/tv_01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="60dp"
+        android:gravity="bottom|center"
+        android:text="我是智慧政务机器人!"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_for_55px"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="20dp"
+        android:gravity="bottom|center"
+        android:text="请问有什么可以帮助您的?"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_for_30px" />
+
+
+</FrameLayout>

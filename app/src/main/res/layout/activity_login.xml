@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/logo_title"
+        android:layout_marginLeft="100px">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/lin_title"
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/tv_title">
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/logo_left">
+
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_black_1"
+            android:textSize="22sp"
+            android:layout_marginLeft="20px"
+            android:text="请选择"></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:layout_marginRight="20px"
+            android:textColor="@color/c_017eff"
+            android:text="登录方式"></TextView>
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/logo_right2">
+
+        </ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/lin_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/lin_dlfs"
+        android:orientation="horizontal">
+       <Button
+           android:id="@+id/btn_sfz"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="@mipmap/btn_sfzdl">
+       </Button>
+
+        <Button
+            android:id="@+id/btn_sbk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:background="@mipmap/btn_sbkdl">
+        </Button>
+        <Button
+            android:id="@+id/btn_ewm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="100px"
+            android:background="@mipmap/btn_ewmdl">
+        </Button>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_wxts"
+        android:layout_below="@+id/lin_dlfs"
+        android:layout_width="match_parent"
+        android:layout_marginTop="100px"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_marginLeft="250px"
+            android:background="@mipmap/logo_tishi">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_ceng_2"
+            android:textSize="22sp"
+            android:text="温馨提示：">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/lin_wxts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_below="@+id/lin_wxts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lin_wxts_left"
+            android:layout_marginLeft="300px"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/c_black_1"
+                android:text="1.您可以通过二代身份证、社保卡、扫描码办理社保卡相关业务;">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginTop="20px"
+                android:textColor="@color/c_black_1"
+                android:text="2.登录成功后，请及时取走您的身份证或社保卡，以免遗失;">
+            </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lin_wxts_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_alignRight="@+id/lin_wxts_left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/c_black_1"
+                android:text="3.业务办理成功后，请点击退出按钮，以防个人隐私信息泄漏；">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+
+                android:layout_marginTop="20px"
+                android:textColor="@color/c_black_1"
+                android:text="4.如有疑问请咨询相关人员，或者拨打电话：12333">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

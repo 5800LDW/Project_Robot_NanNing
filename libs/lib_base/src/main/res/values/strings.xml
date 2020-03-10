@@ -1,0 +1,4 @@
+<resources>
+    <string name="base_text_wakeup">金宝金宝</string>
+    <string name="base_text_network_fail">网络不给力，请检查网络设置。</string>
+</resources>

@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">广西数字人社</string>
+    <string name="input_old_pwd">输入原密码</string>
+    <string name="input_new_pwd">输入新密码</string>
+    <string name="input_confirm_pwd">确认新密码</string>
+
+    <string name="Toast_Intent">功能建设中，敬请期待</string>
+
+
+    <string name="app_text_example１">\＂您好，请问有什么可以帮您，您可以说金宝金宝\＂；</string>
+    <string name="app_text_example2">如：您可以说\＂业务咨询\＂，机器人回答\＂好的，业务咨询\＂，系统会自动跳到业务咨询的主界面 </string>
+    <string name="app_text_wakeup">@string/base_text_wakeup</string>
+    <string name="app_text_consultation_top1">对我说\＂%1$s\＂可以打断我哦 </string>
+    <string name="app_text_consultation_question1">养老金如何领取</string>
+    <string name="app_text_consultation_question2">灵活就业人员如何缴纳医保费</string>
+    <string name="app_text_consultation_question3">如何申领职业培训补贴</string>
+    <string name="app_text_consultation_question4">怎么办理异地就医备案手续</string>
+    <string name="app_drop_out">再按一次退出应用</string>
+    <string name="app_welcome">您好，请问有什么可以帮您？您可以这样对我说：%1$s</string>
+    <string name="app_welcome_user">您好，%1$s，请问有什么可以帮您？您可以这样对我说：%2$s</string>
+    <string name="app_text_information">业务咨询</string>
+    <string name="app_text_handle">业务办理</string>
+    <string name="app_text_policies">政策法规</string>
+    <string name="app_text_recreation">休闲娱乐</string>
+
+    <string name="app_text_function01">1.%1$s</string>
+    <string name="app_text_function02">2.%1$s</string>
+    <string name="app_text_function03">3.%1$s</string>
+    <string name="app_text_function04">4.%1$s</string>
+
+    <string name="app_text_may_i_help_you">您好请问有什么可以帮到您?</string>
+
+    <string name="btn_determine">确定</string>
+
+    <string name="password_change_success">密码修改成功</string>
+    <string name="password_two">2次密码不一致，请重新输入新密码</string>
+    <string name="password_six">请输入6位密码</string>
+    <string name="login_success">登录成功</string>
+    <string name="tip_not_query_info">未查到相关信息</string>
+    <string name="tip_request_err">网络请求错误，请稍后再试！</string>
+</resources>

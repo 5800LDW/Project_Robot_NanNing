@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flListener"
+    android:layout_width="960dp"
+    android:layout_height="112dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="bottom">
+
+    <ImageView
+        android:id="@+id/ivListenButton1"
+        android:layout_width="960dp"
+        android:layout_gravity="center"
+        android:layout_height="112dp"
+        android:background="@drawable/app_icon_listener"
+      />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/ivListenButton2"
+        android:layout_width="960dp"
+        android:layout_gravity="center"
+        android:layout_height="112dp"
+        android:background="@mipmap/app_gif_listening"/>
+
+
+<!--    <com.cunoraz.gifview.library.GifView-->
+<!--        android:id="@+id/ivListenButton"-->
+<!--        android:layout_width="960dp"-->
+<!--        android:layout_height="112dp"-->
+<!--        android:visibility="gone"-->
+<!--        tools:background="@drawable/app_icon_listener"/>-->
+
+
+    <LinearLayout
+        android:id="@+id/llListen"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_gravity="center|top"
+            android:gravity="center|top"
+            android:textSize="28dp"
+            android:text="戳我一下"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:layout_gravity="center|top"
+            android:gravity="center|top"
+            android:textSize="28dp"
+            android:text="和我说话"/>
+    </LinearLayout>
+
+</FrameLayout>

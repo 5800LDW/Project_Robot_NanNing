@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <com.tecsun.tsb.network.tool.AnimImageViewLoader
+        android:id="@+id/iv_load_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/anim_all_load"/>
+
+    <TextView
+        android:id="@+id/tv_all_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tip_load"
+        android:textSize="26sp"
+        android:textColor="#1c1c1c"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
