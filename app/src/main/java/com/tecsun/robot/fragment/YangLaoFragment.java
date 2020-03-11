@@ -99,10 +99,16 @@ public class YangLaoFragment extends BaseFragment implements View.OnClickListene
 
                 break;
             case R.id.lin_yl_03:
-//                bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
-//                IntentUtils.startActivity(getActivity(),"养老保险>养老待遇发放信息查询",
-//                        new YbbxffmxFragment(), bundle);
-                Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();
+                if (islogin()){
+                    bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+                    IntentUtils.startActivity(getActivity(),"养老保险>养老待遇发放信息查询",
+                            new YbbxffmxFragment(), bundle);
+                }
+                else {
+                    return;
+                }
+
+
                 break;
             case R.id.lin_yl_04:
                 Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();

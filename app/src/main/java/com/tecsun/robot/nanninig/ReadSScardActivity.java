@@ -1,6 +1,5 @@
 package com.tecsun.robot.nanninig;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -40,7 +39,7 @@ import java.util.Iterator;
 /**
  * 读取社保卡界面
  * */
-public class ReadSScardActivity extends Activity {
+public class ReadSScardActivity extends MyBaseActivity {
     public static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     private UsbManager m_manager;			// USB管理器
     private UsbDevice m_UsbDevice;			// 找到的USB设备
@@ -52,6 +51,7 @@ public class ReadSScardActivity extends Activity {
 //    private TextView txtView;
     boolean isRead = false;
     boolean isStop = false;
+    boolean Flag_Toast_Login = true;//不重复弹出toast;
 
     Button btn_close;
     ImageView img_sfz;
@@ -259,9 +259,12 @@ public class ReadSScardActivity extends Activity {
                 StaticBean.idcard=list_sbk[1];
                 StaticBean.sscard_number=list_sbk[2];
                 StaticBean.name=list_sbk[4];
-                ToastUtils.INSTANCE.showGravityShortToast(this,getString(R.string.login_success));
-                EventBus.getDefault().post(new IdCardBean(2));
-                finish();
+                if (Flag_Toast_Login) {
+                    Flag_Toast_Login=false;
+                    ToastUtils.INSTANCE.showGravityShortToast(this, getString(R.string.login_success));
+                    EventBus.getDefault().post(new IdCardBean(2));
+                    finish();
+                }
             }
         }else {
             strOut = "读社保卡基本信息失败！错误信息为：" + iRetInfo.GetInfo();
@@ -271,7 +274,6 @@ public class ReadSScardActivity extends Activity {
 //        txtView.setText(strOut);
         Log.d("iReadCardBas", strOut);
     }
-
 
 
     /**

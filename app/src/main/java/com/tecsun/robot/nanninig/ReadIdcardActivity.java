@@ -1,6 +1,5 @@
 package com.tecsun.robot.nanninig;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -39,12 +38,10 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import io.netty.util.internal.StringUtil;
-
 /**
  * 读取身份证界面
  * */
-public class ReadIdcardActivity extends Activity {
+public class ReadIdcardActivity extends MyBaseActivity {
     public static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     private UsbManager m_manager;			// USB管理器
     private UsbDevice m_UsbDevice;			// 找到的USB设备
@@ -60,6 +57,9 @@ public class ReadIdcardActivity extends Activity {
     Button btn_close;
     ImageView img_sfz;
     TextView tv_time;
+
+    boolean Flag_Toast_Login = true;//不重复弹出toast;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -284,9 +284,12 @@ public class ReadIdcardActivity extends Activity {
             StaticBean.idcard=idCardBean.getIdCardNo();
 //            StaticBean.name="徐树仁";
 //            StaticBean.idcard="360734199403150017";
-            ToastUtils.INSTANCE.showGravityShortToast(this,getString(R.string.login_success));
-            EventBus.getDefault().post(new IdCardBean(1));
-            this.finish();
+            if (Flag_Toast_Login) {
+                Flag_Toast_Login = false;
+                ToastUtils.INSTANCE.showGravityShortToast(this, getString(R.string.login_success));
+                EventBus.getDefault().post(new IdCardBean(1));
+                this.finish();
+            }
 //            image.setImageBitmap(idCardBean.getPhoto());
             //读取成功退出当前界面
 

@@ -181,9 +181,9 @@ final public class ConsultationActivity extends BaseActivity {
         }
         runOnUiThread(() -> {
             rvConsultation.setVisibility(View.VISIBLE);
-            flAppItemAnswer.setVisibility(View.INVISIBLE);
+            flAppItemAnswer.setVisibility(View.GONE);
             llBottomQuestions.setVisibility(View.VISIBLE);
-            btQuitTopic.setVisibility(View.INVISIBLE);
+            btQuitTopic.setVisibility(View.GONE);
         });
         adapter.setHideLine(true).setNewData(answerBeans);
         adapter.notifyDataSetChanged();
@@ -358,9 +358,9 @@ final public class ConsultationActivity extends BaseActivity {
             }
 
             flAppItemAnswer.setVisibility(View.VISIBLE);
-            rvConsultation.setVisibility(View.INVISIBLE);
+            rvConsultation.setVisibility(View.GONE);
             llBottomQuestions.setVisibility(View.VISIBLE);
-            btQuitTopic.setVisibility(View.INVISIBLE);
+            btQuitTopic.setVisibility(View.GONE);
             tvAppItemAnswer.setMovementMethod(ScrollingMovementMethod.getInstance());
 //            tvAppItemAnswer.setText(answer);
             tvAppItemAnswer.setText(speakContent);
@@ -379,8 +379,8 @@ final public class ConsultationActivity extends BaseActivity {
                 speakAndCheckComplete(initiaDataTopic.getQuestion(), () -> speechManagerWakeUp());
             }
             rvConsultation.setVisibility(View.VISIBLE);
-            flAppItemAnswer.setVisibility(View.INVISIBLE);
-            llBottomQuestions.setVisibility(View.INVISIBLE);
+            flAppItemAnswer.setVisibility(View.GONE);
+            llBottomQuestions.setVisibility(View.GONE);
             btQuitTopic.setVisibility(View.VISIBLE);
 
             answerBeans.clear();

@@ -1,6 +1,5 @@
 package com.tecsun.robot.nanninig;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -10,13 +9,13 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.tecsun.jc.base.utils.ToastUtils;
 import com.tecsun.robot.MyBaseActivity;
 import com.tecsun.robot.bean.QrinfoLXBean;
 import com.tecsun.robot.bean.evenbus.IdCardBean;
 import com.tecsun.robot.bean.qrinfoBean;
-import androidx.annotation.Nullable;
-
 import com.tecsun.robot.dance.ActivityManager;
 import com.tecsun.robot.nanning.util.WebViewUtil;
 import com.tecsun.robot.request.impl.CardRequestServerImpl;
@@ -30,12 +29,13 @@ import org.greenrobot.eventbus.EventBus;
 /**
  * 获取二维码
  * */
-public class ReadQrActivity extends Activity {
+public class ReadQrActivity extends MyBaseActivity {
     Button btn_close;
     WebView webview;
     Handler handler=new Handler();
     Runnable runnable;
 
+    boolean Flag_Toast_Login = true;//不重复弹出toast;
     TextView tv_time;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +88,8 @@ public class ReadQrActivity extends Activity {
 
         if (resultBean.isSuccess()) {
             WebViewUtil.set(webview);
+            webview.setHorizontalScrollBarEnabled(false);//水平不显示
+            webview.setVerticalScrollBarEnabled(false); //垂直不显示
             webview.loadUrl(resultBean.data.url);
             getCodeResult(resultBean.data.aaz346);//轮循
         }
@@ -107,9 +109,13 @@ public class ReadQrActivity extends Activity {
             if ("1".equals(resultBean.data.ISAUTH)){//授权成功1、成功、0授权中
                 StaticBean.name=resultBean.data.AAC003;
                 StaticBean.idcard=resultBean.data.AAC002;
-                ToastUtils.INSTANCE.showGravityShortToast(this,getString(R.string.login_success));
-                EventBus.getDefault().post(new IdCardBean(1));
-                this.finish();
+                if (Flag_Toast_Login){
+                    Flag_Toast_Login=false;
+                    ToastUtils.INSTANCE.showGravityShortToast(this,getString(R.string.login_success));
+                    EventBus.getDefault().post(new IdCardBean(1));
+                    this.finish();
+                }
+
             }
         }
         else{

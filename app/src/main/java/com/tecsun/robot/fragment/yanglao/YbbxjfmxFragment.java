@@ -9,23 +9,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tecsun.robot.adapter.LinearAdapter;
-import com.tecsun.robot.bean.YangLaoInfoBean;
 import com.tecsun.robot.bean.YangLaoJFBean;
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.BaseFragment;
 import com.tecsun.robot.nanninig.R;
-import com.tecsun.robot.param.IdNameBean;
 import com.tecsun.robot.param.IdNameYanglaoJfBean;
 import com.tecsun.robot.request.impl.CardRequestServerImpl;
 import com.tecsun.robot.utils.StaticBean;
 import com.tecsun.tsb.network.bean.ReplyBaseResultBean;
-import com.tecsun.tsb.network.bean.param.IdNameParam;
-import com.tecsun.tsb.network.manager.NetworkManager;
 import com.tecsun.tsb.network.subscribers.ProgressSubscriber;
 import com.tecsun.tsb.network.subscribers.SubscriberResultListener;
 
@@ -124,7 +119,7 @@ public class YbbxjfmxFragment extends BaseFragment {
 
         }
         else{
-
+            showWarningDialog(resultBean.message);
         }
     }
 

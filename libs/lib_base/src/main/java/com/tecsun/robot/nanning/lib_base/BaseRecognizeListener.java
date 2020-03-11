@@ -49,7 +49,7 @@ public class BaseRecognizeListener implements RecognizeListener {
         if (i1 == 10114) {
             new Handler(Looper.myLooper()).post(() -> ToastUtils.INSTANCE.showGravityShortToast(
                     InitContentProvider.getStaticContext(),
-                    "连接服务器失败"));
+                    "无法连接服务器"));
         }
     }
 

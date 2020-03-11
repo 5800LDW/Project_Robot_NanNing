@@ -35,6 +35,7 @@ public class Mainactivity extends MyBaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 //            StaticBean.name="徐树仁";
 //            StaticBean.idcard="360734199403150017";
         lin_login = (LinearLayout) findViewById(R.id.lin_login);

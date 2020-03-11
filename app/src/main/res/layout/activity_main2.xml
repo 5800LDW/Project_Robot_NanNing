@@ -17,7 +17,7 @@
         android:id="@+id/img_bg"
         android:layout_below="@+id/tv_title"
         android:layout_width="650dp"
-        android:layout_height="@dimen/dimen_450"
+        android:layout_height="@dimen/dimen_441"
         android:background="@mipmap/logo_nanning"
         android:layout_marginTop="@dimen/dimen_30"
         android:layout_marginLeft="@dimen/dimen_100"></ImageView>

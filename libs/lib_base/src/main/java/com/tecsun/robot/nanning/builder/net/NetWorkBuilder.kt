@@ -104,15 +104,30 @@ class NetWorkBuilder(private val baseActivity: BaseActivity?, private var locati
 //            }
 //        }
 
+
+
+//        var b = NetworkUtil.isConn(InitContentProvider.getStaticContext());
+//        if(!b){
+//            baseActivity?.runOnUiThread {
+//                showBiz()
+//            }
+//        }
+//        else{
+//            baseActivity?.runOnUiThread {
+//                hideBiz()
+//            }
+//        }
+
+
         var b = NetworkUtil.isConn(InitContentProvider.getStaticContext());
         if(!b){
             baseActivity?.runOnUiThread {
-                showBiz()
+                netObserver?.onNetDisConnect();
             }
         }
         else{
             baseActivity?.runOnUiThread {
-                hideBiz()
+                netObserver?.onNetConnected(NetUtils.NetType.NONE);
             }
         }
         LogUtil.e(TAG,">>>>>>>>>>>>>>>>>>>>>>>>>>> b = " + b)

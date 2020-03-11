@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.tecsun.robot.bean.YangLaoInfoBean;
 import com.tecsun.robot.common.Defs;
@@ -122,7 +121,7 @@ public class YblxxxFragment extends BaseFragment {
             tv_cbzt.setText(bean.aac008+"");
         }
         else{
-
+            showWarningDialog(resultBean.message);
         }
     }
 

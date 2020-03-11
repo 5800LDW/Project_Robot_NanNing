@@ -1,6 +1,7 @@
 package com.tecsun.robot.fragment.yiliao;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +137,7 @@ public class YblxcxFragment extends BaseFragment {
             tv_ylbxzsr.setText(bean.ake522);
         }
         else{
-
+            showWarningDialog(resultBean.message);
         }
     }
 

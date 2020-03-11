@@ -10,6 +10,7 @@
         android:id="@+id/tvAppItemAnswer"
         android:layout_width="match_parent"
         android:paddingLeft="@dimen/dimen_15"
+        android:paddingTop="@dimen/dimen_5"
         android:layout_height="wrap_content"
         android:minHeight="60dp"
         android:layout_gravity="center|top"

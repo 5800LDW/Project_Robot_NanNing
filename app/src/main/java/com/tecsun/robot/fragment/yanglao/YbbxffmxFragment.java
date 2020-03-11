@@ -1,7 +1,6 @@
 package com.tecsun.robot.fragment.yanglao;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tecsun.robot.adapter.LinearAdapter;
 import com.tecsun.robot.adapter.YbbxffmxAdapter;
-import com.tecsun.robot.bean.YangLaoInfoBean;
-import com.tecsun.robot.bean.YangLaoJFBean;
 import com.tecsun.robot.bean.yanglao.YangLaoFFBean;
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.BaseFragment;
@@ -96,6 +92,7 @@ public class YbbxffmxFragment extends BaseFragment {
                 getActivity(), new SubscriberResultListener() {
             @Override
             public void onNext(Object o) {
+
                 loadVerifyData(o);
             }
 
@@ -122,7 +119,7 @@ public class YbbxffmxFragment extends BaseFragment {
 
         }
         else{
-
+            showWarningDialog(resultBean.message);
         }
     }
 
