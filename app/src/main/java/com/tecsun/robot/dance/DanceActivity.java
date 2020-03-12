@@ -20,12 +20,14 @@ import com.tecsun.robot.nanninig.R;
 import java.util.List;
 
 import static com.sanbot.dance_play.DanceManager.DANCE_STATUS_COMPLETE;
+import static com.sanbot.dance_play.DanceManager.DANCE_STATUS_STOP;
 
 public class DanceActivity extends BaseActivity {
 
 
     protected AnimImageViewLoader animLoader;
 
+    private int result = 0;
     @Override
     protected void onMainServiceConnected() {
         super.onMainServiceConnected();
@@ -43,13 +45,10 @@ public class DanceActivity extends BaseActivity {
         View view = findViewById(R.id.gif_dance);
         view.setOnClickListener(v -> {
             if (danceManager != null) {
+                //danceManager.pause();
                 danceManager.stop();
             }
-            setResult(0x01);
-            Handler handler = new Handler();
-            handler.postDelayed(() -> {
-                myFinish();
-            }, 2000);
+            result = 0x01;
         });
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
@@ -61,14 +60,26 @@ public class DanceActivity extends BaseActivity {
                 @Override
                 public void onErrorListener(int i, String s) {
                     Log.d("======>", "DanceManager onErrorListener:code="+i+",msg="+s);
+                    setResult(0x00);
+                    Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        myFinish();
+                    }, 1000);
                 }
 
                 @Override
                 public void onStateCallBack(int i) {
+
+                    Log.d("======>", "DanceManager onStateCallBack:code="+i);
                     if(i == DANCE_STATUS_COMPLETE){
-                        danceManager.stop();
-                        setResult(0x00);
+                        setResult(0);
                         myFinish();
+                    }else if(i == DANCE_STATUS_STOP){
+                        setResult(result);
+                        Handler handler = new Handler();
+                        handler.postDelayed(() -> {
+                            myFinish();
+                        }, 1000);
                     }
                 }
             });
@@ -80,6 +91,8 @@ public class DanceActivity extends BaseActivity {
                 handler.postDelayed(() -> {
                     danceManager.start();
                 }, 2000);
+            }else {     //读取舞蹈数据异常
+               myFinish();
             }
         } else {
             setResult(0x01, null);
@@ -111,22 +124,16 @@ public class DanceActivity extends BaseActivity {
                 //语音监听返回
                 if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(com.example.xukefeng.musicplayer.R.array.app_arr_backromain))) {
                     if (danceManager != null) {
+                        //danceManager.pause();
                         danceManager.stop();
                     }
-                    Handler handler = new Handler();
-                    handler.postDelayed(() -> {
-                        setResult(0x00);
-                        myFinish();
-                    }, 2000);
+                    result = 0;
                 } else if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(com.example.xukefeng.musicplayer.R.array.app_arr_back))) {
                     if (danceManager != null) {
+                        //danceManager.pause();
                         danceManager.stop();
                     }
-                    Handler handler = new Handler();
-                    handler.postDelayed(() -> {
-                        setResult(0x01);
-                        myFinish();
-                    }, 2000);
+                    result = 1;
                 }
             }
         });
@@ -141,9 +148,7 @@ public class DanceActivity extends BaseActivity {
             animLoader.stopAnimation();
             animLoader = null;
         }
-        if (danceManager != null) {
-            danceManager.destroy();
-        }
+        danceManager.destroy();
         super.onDestroy();
     }
 }

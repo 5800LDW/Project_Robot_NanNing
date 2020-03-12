@@ -101,6 +101,8 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
     implementation 'com.yuyashuai.frameanimation:frameanimation:2.2.1'
 
+
+//    implementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
 //    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
                     //compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
 }

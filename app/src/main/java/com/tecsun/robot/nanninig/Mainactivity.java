@@ -135,11 +135,11 @@ public class Mainactivity extends MyBaseActivity {
     protected void onResume() {
         super.onResume();
         tv_name.setText(TextUtils.isEmpty(StaticBean.name)?"":"欢迎你，"+StaticBean.name);
-        if (TextUtils.isEmpty(StaticBean.name)){
-            tv_login.setText("登录");
+        if (!TextUtils.isEmpty(StaticBean.name)){
+            tv_login.setText(getString(R.string.app_text_exitlogin));
         }
         else{
-            tv_login.setText("退出登录");
+            tv_login.setText(getString(R.string.app_text_login));
         }
         StartTime();
     }
@@ -210,7 +210,7 @@ public class Mainactivity extends MyBaseActivity {
         }
         else{
             StaticBean.clear();
-            tv_login.setText("登录");
+            tv_login.setText(getString(R.string.app_text_login));
             tv_name.setText(StaticBean.name);
         }
 

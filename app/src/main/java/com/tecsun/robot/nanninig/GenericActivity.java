@@ -19,6 +19,7 @@ import com.tecsun.robot.bean.evenbus.IsStartTimerBean;
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.dance.ActivityManager;
 import com.tecsun.robot.fragment.BaseFragment;
+import com.tecsun.robot.fragment.LoginFragment;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
 
@@ -76,7 +77,18 @@ public class GenericActivity extends MyBaseActivity {
         btn_exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Exit();
+
+                if (btn_exit.getText().toString().equals(getString(R.string.app_text_login))){
+
+                    Bundle bundle01 = new Bundle();
+                    bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+                    IntentUtils.startActivity(GenericActivity.this,"登录标题",
+                            new LoginFragment(), bundle01);
+                }
+                else{
+                    Exit();
+                }
+
             }
         });
         lin_home.setOnClickListener(new View.OnClickListener() {
@@ -117,12 +129,20 @@ public class GenericActivity extends MyBaseActivity {
 //        }
 
         if (IntentUtils.mContentFragment != null) {
+
+            Log.d("退出界面","进来替换"+IntentUtils.mContentFragment);
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fl_activity_content, IntentUtils.mContentFragment);
             ft.addToBackStack(null);
             ft.commit();
+            String str=IntentUtils.mContentFragment+"";
+
+            if (str.contains("LoginFragment")){
+                btn_exit.setText(getString(R.string.app_text_exitlogin));
+            }
+
             IntentUtils.mContentFragment = null;
-            Log.d("退出界面","进来替换");
+
         }
     }
 
@@ -162,8 +182,10 @@ public class GenericActivity extends MyBaseActivity {
         StartTime();
         if (!TextUtils.isEmpty(StaticBean.name)){
             name.setText(StaticBean.name+"，您好!");
+            btn_exit.setText(getString(R.string.app_text_exitlogin));
         }
         else{
+            btn_exit.setText(getString(R.string.app_text_login));
             name.setText(StaticBean.name);
         }
 

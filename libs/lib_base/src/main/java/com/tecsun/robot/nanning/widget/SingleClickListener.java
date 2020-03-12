@@ -13,11 +13,11 @@ import android.view.View;
  * @date 2019/05/29
  */
 public abstract class SingleClickListener implements View.OnClickListener {
-    private long mLastClickTime;
+    private static long  mLastClickTime;
     /**
      * 间隔的点击时间
      */
-    private long timeInterval = 500L;
+    private static long timeInterval = 500L;
 
     public SingleClickListener() {
 
@@ -27,8 +27,8 @@ public abstract class SingleClickListener implements View.OnClickListener {
         return timeInterval;
     }
 
-    public void setTimeInterval(long timeInterval) {
-        this.timeInterval = timeInterval;
+    public void setTimeInterval(long t) {
+        timeInterval = t;
     }
 
     @Override

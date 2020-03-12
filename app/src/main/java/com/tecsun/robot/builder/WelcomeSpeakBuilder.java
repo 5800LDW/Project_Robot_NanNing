@@ -85,6 +85,7 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
 
     /**
      * 识别到vip就立刻跟vip问好;
+     *
      * @param bean
      */
     public final void delaySpeak(FaceRecognizeBean bean) {
@@ -96,35 +97,35 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
         }
 
         //普通
-        if(TextUtils.isEmpty(bean.getUser()) && internalTimeLocal > LONG_SPEAK_INTERNAL){
+        if (bean != null && TextUtils.isEmpty(bean.getUser()) && internalTimeLocal > LONG_SPEAK_INTERNAL) {
             isVip = false;
             lastSpeakLogTime = System.currentTimeMillis();
             mHandler.removeCallbacks(runnable);
             //后台识别vip照片成功次数比普通的少,添加延迟方便走普通-->vip
-            mHandler.postDelayed(runnable,collectTimeInternal);
-            LogUtil.e(TAG,"普通");
+            mHandler.postDelayed(runnable, collectTimeInternal);
+            LogUtil.e(TAG, "普通");
         }
         //普通-->vip
-        else if(!TextUtils.isEmpty(bean.getUser()) && !isVip){
+        else if (bean != null && !TextUtils.isEmpty(bean.getUser()) && !isVip && internalTimeLocal > 1000) {
             isVip = true;
             lastSpeakLogTime = System.currentTimeMillis();
             mHandler.removeCallbacks(runnable);
             mHandler.post(runnable);
-            LogUtil.e(TAG,"普通-->vip");
+            LogUtil.e(TAG, "普通-->vip");
         }
         //vip--->vip
-        else if(isVip && internalTimeLocal > LONG_SPEAK_INTERNAL){
+        else if (isVip && internalTimeLocal > LONG_SPEAK_INTERNAL) {
             isVip = true;
             lastSpeakLogTime = System.currentTimeMillis();
             mHandler.removeCallbacks(runnable);
             mHandler.post(runnable);
-            LogUtil.e(TAG,"vip-->vip");
+            LogUtil.e(TAG, "vip-->vip");
         }
     }
 
     boolean isVip = false;
 
-    private Runnable runnable = ()->{
+    private Runnable runnable = () -> {
         //停止说话
 //        if(baseActivity.isSpeaking()){
 //            baseActivity.myStopSpeak();

@@ -4,14 +4,17 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
 import com.example.xukefeng.musicplayer.PackageClass.MusicInfo;
 import com.sanbot.dance_play.DanceBean;
@@ -22,17 +25,10 @@ import com.tecsun.robot.nanning.lib_base.BaseActivity;
 import com.tecsun.robot.nanning.lib_base.BaseRecognizeListener;
 import com.tecsun.robot.nanning.util.pinyin.PinYinUtil;
 
-import java.io.File;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
 
 /*
      自定义音乐播放器
@@ -153,7 +149,11 @@ public class DanceMusicListActivity extends BaseActivity implements AdapterView.
         List<DanceBean> list = danceManager.getDanceList(this);
         title.clear();
         List_map = new ArrayList<Map<String, String>>() ;
-        if(List_map.size()==0){
+        if(list == null || list.size()==0){
+            if(!isRobotServiceConnected()){
+                speechManagerWakeUp();
+            }
+            speak("没有搜索到舞蹈，请先通过舞蹈编辑程序添加舞蹈");
             return;
         }
         for (int i = 0 ; i < list.size() ; i++)
@@ -171,14 +171,6 @@ public class DanceMusicListActivity extends BaseActivity implements AdapterView.
         MusicListView.setAdapter(simpleAdapter);
         //绑定item点击事件
         MusicListView.setOnItemClickListener(this);
-    }
-
-    @Override
-    protected void onMainServiceConnected() {
-        super.onMainServiceConnected();
-        if(List_map.size()==0){
-            speak("没有搜索到舞蹈，请先通过舞蹈编辑程序添加舞蹈");
-        }
     }
 
     /*

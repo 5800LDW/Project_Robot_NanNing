@@ -1,7 +1,6 @@
 package com.tecsun.robot;
 
 import android.content.Context;
-import android.os.Handler;
 import android.os.PowerManager;
 import android.util.Log;
 
@@ -10,13 +9,11 @@ import androidx.multidex.MultiDexApplication;
 
 import com.sanbot.dance_play.DanceInterface;
 import com.sanbot.dance_play.DanceManager;
-import com.tecsun.robot.dance.SanbotDanceManager;
+//import com.squareup.leakcanary.LeakCanary;
 import com.tecsun.tsb.network.manager.NetworkManager;
 import com.tecsun.tsb.network.retrofit.RetrofitAPIImpl;
 
 import retrofit2.Retrofit;
-
-import static com.sanbot.dance_play.DanceManager.DANCE_STATUS_COMPLETE;
 
 /**
  * Created by chen on 2019/12/12.
@@ -38,10 +35,16 @@ public class MainApp extends MultiDexApplication {
 
 //    public static String IP = "10.190.149.110"; //内网
 //    public static int ID = 8283; //内网
-    public static String IP = "116.10.194.35";
-//    public static String IP = "192.168.1.153";
+    //广西外网
+//    public static String IP = "116.10.194.35";
+//    public static int ID = 9393;
+    //公司转发
+    public static String IP = "61.28.113.182";
+    public static int ID = 9395;
+
+
+    //    public static String IP = "192.168.1.153";
 //    public static int ID = 8000;
-    public static int ID = 9393;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -81,6 +84,7 @@ public class MainApp extends MultiDexApplication {
 
             @Override
             public void onStateCallBack(int i) {
+                Log.d("======>", "DanceManager onStateCallBack:code="+i+",msg="+i);
             }
         });
 
@@ -111,6 +115,8 @@ public class MainApp extends MultiDexApplication {
 //        if (!AppUtils.copyApkFromAssets(this, "/mnt/sdcard/", "KeyBoard.ini")) {
 //            LogUtil.e("!!!!!! 金融配置文件拷贝失败！ 请检查文件是否存在");
 //        }
+
+//        LeakCanary.install(this);
     }
 //
 //    /**
@@ -270,4 +276,13 @@ public class MainApp extends MultiDexApplication {
 //        }
 //        return false;
 //    }
+
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        if (manager != null) {
+            manager.destroy();
+        }
+    }
 }

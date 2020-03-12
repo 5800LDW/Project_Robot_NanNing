@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import com.tecsun.robot.nanning.builder.BaseBuilder;
 import com.tecsun.robot.nanning.builder.BuilderLifeCycleObserver;
 import com.tecsun.robot.nanning.lib_base.BaseActivity;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.nanninig.R;
 
 /**
@@ -43,21 +44,42 @@ public class ListeningAnimationBuilder extends BaseBuilder {
         View flListener = baseActivity.findViewById(R.id.flListener);
         if (flListener != null) {
 
-            flListener.setOnClickListener(v -> {
-                        //停止机器人说话
-                        baseActivity.myStopSpeak();
-
-                        baseActivity.speechManagerWakeUp();
-                        Log.e("TAGTAGTAG", "baseActivity.speechManagerWakeUp()");
+//            flListener.setOnClickListener(v -> {
+//                        //停止机器人说话
+//                        baseActivity.myStopSpeak();
+//
+//                        baseActivity.speechManagerWakeUp();
+//                        Log.e("TAGTAGTAG", "baseActivity.speechManagerWakeUp()");
+//                    }
+//            );
+            flListener.setOnClickListener(
+                    new SingleClickListener() {
+                        @Override
+                        public void onSingleClick(View v) {
+                            //停止机器人说话
+                            baseActivity.myStopSpeak();
+                            baseActivity.speechManagerWakeUp();
+                            Log.e(TAG, "baseActivity.speechManagerWakeUp()");
+                        }
                     }
             );
         }
         View flListenerLogo = baseActivity.findViewById(R.id.flListenerLogo);
         if (flListenerLogo != null) {
-            flListenerLogo.setOnClickListener(v -> {
-                        //停止机器人说话
-                        baseActivity.myStopSpeak();
-                        baseActivity.speechManagerWakeUp();
+//            flListenerLogo.setOnClickListener(v -> {
+//                        //停止机器人说话
+//                        baseActivity.myStopSpeak();
+//                        baseActivity.speechManagerWakeUp();
+//            });
+
+            flListenerLogo.setOnClickListener(new SingleClickListener() {
+                @Override
+                public void onSingleClick(View v) {
+                    //停止机器人说话
+                    baseActivity.myStopSpeak();
+                    baseActivity.speechManagerWakeUp();
+                    Log.e(TAG, "baseActivity.speechManagerWakeUp()");
+                }
             });
         }
 

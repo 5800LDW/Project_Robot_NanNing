@@ -24,6 +24,7 @@ import com.tecsun.robot.nanning.util.DeviceUtil;
 import com.tecsun.robot.nanning.util.ExitUtils;
 import com.tecsun.robot.nanning.util.log.LogUtil;
 import com.tecsun.robot.nanning.util.pinyin.PinYinUtil;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -62,23 +63,58 @@ public final class HomePageActivity extends BaseActivity {
         ll02 = findViewById(R.id.ll02);
         ll03 = findViewById(R.id.ll03);
         ll04 = findViewById(R.id.ll04);
-        ll01.setOnClickListener(v ->
-                myStartActivity(ConsultationActivity.class)
-        );
-        ll02.setOnClickListener(v ->
-                myStartActivity(Mainactivity.class)
-        );
-        ll03.setOnClickListener(v ->
-        {
-//            myStartActivity(PoliciesAndRegulationsActivity.class);
-            speechManager.cancelSemanticRequest();
-            Intent intent9 = new Intent();
-            intent9.setClass(this, HtmlActivity.class);
-            intent9.putExtra("title", "政策法规");
-            intent9.putExtra("url", BaseConstant.URL_POLICIES_AND_REGULATIONS);
-            startActivity(intent9);
+//        ll01.setOnClickListener(v ->
+//                myStartActivity(ConsultationActivity.class)
+//        );
+//        ll02.setOnClickListener(v ->
+//                myStartActivity(Mainactivity.class)
+//        );
+//        ll03.setOnClickListener(v ->
+//        {
+////            myStartActivity(PoliciesAndRegulationsActivity.class);
+//            speechManager.cancelSemanticRequest();
+//            Intent intent9 = new Intent();
+//            intent9.setClass(this, HtmlActivity.class);
+//            intent9.putExtra("title", "政策法规");
+//            intent9.putExtra("url", BaseConstant.URL_POLICIES_AND_REGULATIONS);
+//            startActivity(intent9);
+//        });
+//        ll04.setOnClickListener(v -> myStartActivity(EntertainmentActivity.class));
+
+
+        ll01.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                myStartActivity(ConsultationActivity.class);
+            }
         });
-        ll04.setOnClickListener(v -> myStartActivity(EntertainmentActivity.class));
+
+        ll02.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                myStartActivity(Mainactivity.class);
+            }
+        });
+
+        ll03.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                speechManager.cancelSemanticRequest();
+                Intent intent9 = new Intent();
+                intent9.setClass(HomePageActivity.this, HtmlActivity.class);
+                intent9.putExtra("title", "政策法规");
+                intent9.putExtra("url", BaseConstant.URL_POLICIES_AND_REGULATIONS);
+                startActivity(intent9);
+            }
+        });
+
+        ll04.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                myStartActivity(EntertainmentActivity.class);
+            }
+        });
+
 
         hardWareManager = (HardWareManager) getUnitManager(FuncConstant.HARDWARE_MANAGER);
         setAll();
@@ -94,6 +130,7 @@ public final class HomePageActivity extends BaseActivity {
         super.onRobotServiceConnected();
         LogUtil.e(TAG, "onRobotServiceConnected()");
         setAll();
+        sendQuestion("退出");
 
     }
 
@@ -152,6 +189,10 @@ public final class HomePageActivity extends BaseActivity {
             @Override
             public boolean onRecognizeResult(@NotNull Grammar grammar) {
                 LogUtil.e("TAG!!!!",">>>>>>>>>>>>>>>>>>>>>>>> onRecognizeResult");
+                //不过滤关灯指令
+                if (grammar.getText().startsWith("{") && grammar.getText().endsWith("}") && grammar.getText().contains("关灯")) {
+                    return false;
+                }
                 return true;
             }
         });

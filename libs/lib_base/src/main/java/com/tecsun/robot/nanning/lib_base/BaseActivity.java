@@ -188,17 +188,26 @@ public class BaseActivity extends TopBaseActivity {
      * @return true 正在讲话, false 没在讲话
      */
     public final boolean isSpeaking() {
-        if (speechManager != null &&
-                speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult() != null &&
-                speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult().equals("1")) {
-            return true;
-        } else if (speechManager != null &&
-                speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult() != null &&
-                speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult().equals("0")) {
-            return false;
-        } else {
+
+        try {
+            if (speechManager != null &&
+                    speechManager.isSpeaking() != null &&
+                    speechManager.isSpeaking().getResult() != null &&
+                    speechManager.isSpeaking() != null &&
+                    speechManager.isSpeaking().getResult().equals("1")) {
+                return true;
+            } else if (speechManager != null &&
+                    speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult() != null &&
+                    speechManager.isSpeaking() != null && speechManager.isSpeaking().getResult().equals("0")) {
+                return false;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, e);
             return false;
         }
+
     }
 
     public final void speechManagerWakeUp() {
@@ -257,8 +266,8 @@ public class BaseActivity extends TopBaseActivity {
     }
 
 
-    public boolean isKongKim(){
-        return  (Build.MODEL + "").toUpperCase().contains("FUWUDANDROID6MODEL");
+    public boolean isKongKim() {
+        return (Build.MODEL + "").toUpperCase().contains("FUWUDANDROID6MODEL");
     }
 
     public final void myStopSpeak() {
@@ -270,7 +279,9 @@ public class BaseActivity extends TopBaseActivity {
     public void myFinish() {
         finish();
         myStopSpeak();
-        speechManager.cancelSemanticRequest();
+        if (speechManager != null) {
+            speechManager.cancelSemanticRequest();
+        }
     }
 
     @Override
@@ -282,7 +293,6 @@ public class BaseActivity extends TopBaseActivity {
     }
 
 
-
     private NetWorkBuilder netWorkBuilder;
 
     /***
@@ -290,22 +300,22 @@ public class BaseActivity extends TopBaseActivity {
      * @param locationView 根部局的view 或其他, 不传就默认根布局
      * @param netChangeObserver 网络回调
      */
-    public void registerNetWorkMonitor(@Nullable View locationView , @androidx.annotation.Nullable NetChangeObserver netChangeObserver){
-        if(netWorkBuilder == null){
-            netWorkBuilder = new NetWorkBuilder(this,locationView,netChangeObserver);
+    public void registerNetWorkMonitor(@Nullable View locationView, @androidx.annotation.Nullable NetChangeObserver netChangeObserver) {
+        if (netWorkBuilder == null) {
+            netWorkBuilder = new NetWorkBuilder(this, locationView, netChangeObserver);
         }
     }
 
-    public TimeBuilder timeBuilder;
+    public final TimeBuilder timeBuilder = TimeBuilder.INSTANCE;
 
     /**
      * 超时监听
+     *
      * @param listener
      */
-    public void registerTimeMonitor(TimeBuilder.TimeListener listener){
-        if(timeBuilder == null){
-            timeBuilder = new TimeBuilder(this,listener);
-        }
+    public TimeBuilder registerTimeMonitor(TimeBuilder.TimeListener listener) {
+        timeBuilder.addBiz(listener);
+        return timeBuilder;
     }
 
     @Override

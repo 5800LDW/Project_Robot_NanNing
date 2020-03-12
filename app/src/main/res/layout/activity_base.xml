@@ -33,7 +33,7 @@
             android:textColor="#fff"
             android:textSize="22sp"
             android:layout_marginLeft="50px"
-            android:text="退出登录"></Button>
+            android:text="@string/app_text_exitlogin"></Button>
 
         <TextView
             android:id="@+id/name"

@@ -17,11 +17,11 @@ public class CardAPICommon {
 
     public static final String yiliao_HealthCarePaymentInfo = "/sanb/healthCare/selectHealthCarePaymentInfo";//医保待遇支付信息查询
 
-    public static final String yanglao_paymentInfo = "http://192.168.1.153:9393/sanb/healthCare/selectPensionPaymentInfo";//养老待遇发放信息查询
+    public static final String yanglao_paymentInfo = "/sanb/healthCare/selectPensionPaymentInfo";//养老待遇发放信息查询
 
 
-    public static final String getqr_info= "http://61.28.113.182:9395/loginServer/getQrCodePic";//获取二维码登录
-    public static final String getqr_lunxun= "http://61.28.113.182:9395/loginServer/getQrCodeUseStatus";//获取二维码登录轮询状态
+    public static final String getqr_info= "/loginServer/getQrCodePic";//获取二维码登录
+    public static final String getqr_lunxun= "/loginServer/getQrCodeUseStatus";//获取二维码登录轮询状态
 
 
 }

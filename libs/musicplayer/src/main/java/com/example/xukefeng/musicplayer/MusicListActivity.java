@@ -7,23 +7,20 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
+
 import com.example.xukefeng.musicplayer.MusicService.MusicPlayerService;
 import com.example.xukefeng.musicplayer.PackageClass.MusicInfo;
-import com.sanbot.opensdk.beans.FuncConstant;
-import com.sanbot.opensdk.beans.OperationResult;
-import com.sanbot.opensdk.function.beans.speech.Grammar;
-import com.sanbot.opensdk.function.beans.speech.RecognizeTextBean;
-import com.sanbot.opensdk.function.unit.FaceTrackManager;
-import com.sanbot.opensdk.function.unit.SpeechManager;
-import com.sanbot.opensdk.function.unit.interfaces.speech.RecognizeListener;
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import com.tecsun.robot.nanning.lib_base.BaseActivity;
 import com.tecsun.robot.nanning.lib_base.BaseRecognizeListener;
@@ -36,11 +33,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
 
 /*
      自定义音乐播放器
@@ -98,12 +90,12 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
 
         MusicListView = findViewById(R.id.MusicListView) ;
         //首先检查自身是否已经拥有相关权限，拥有则不再重复申请
-        int check = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ;
+        int check = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ;
             //没有相关权限
             if (check != PackageManager.PERMISSION_GRANTED)
             {
                 //申请权限
-                ActivityCompat.requestPermissions(this , new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE} ,STORGE_REQUEST);
+                ActivityCompat.requestPermissions(this , new String[] {Manifest.permission.READ_EXTERNAL_STORAGE} ,STORGE_REQUEST);
             }else {
             //已有权限的情况下可以直接初始化程序
             init();
@@ -198,7 +190,11 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
                         MediaStore.Audio.Media.DATA , MediaStore.Audio.Media.ALBUM_ID } , null ,null ,null) ;
 
         List_map = new ArrayList<Map<String, String>>() ;
-        if(List_map.size()==0){
+        if(mCursor == null || mCursor.getCount()==0){
+            if(!isRobotServiceConnected()){
+                speechManagerWakeUp();
+            }
+            speak("没有搜索到歌曲，请先下载歌曲到机器上面");
             return;
         }
         musicInfos = new ArrayList<>() ;
@@ -259,16 +255,6 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
         MusicListView.setAdapter(simpleAdapter);
         //绑定item点击事件
         MusicListView.setOnItemClickListener(this);
-    }
-
-
-    @Override
-    protected void onMainServiceConnected() {
-        super.onMainServiceConnected();
-        if(List_map.size()==0){
-            speak("没有搜索到歌曲，请先下载歌曲到机器上面");
-            return;
-        }
     }
 
     /*
