@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.yiliao.YblxcxFragment;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.nanninig.R;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
@@ -34,7 +35,23 @@ public class YiliaoFragment extends BaseFragment implements View.OnClickListener
         lin_yiliao_07 = (LinearLayout) mView.findViewById(R.id.lin_yiliao_07);
         lin_yiliao_08 = (LinearLayout) mView.findViewById(R.id.lin_yiliao_08);
         lin_yiliao_09 = (LinearLayout) mView.findViewById(R.id.lin_yiliao_09);
-        lin_yiliao_01.setOnClickListener(this);
+        lin_yiliao_01.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                long time1 =System.currentTimeMillis();
+                if (islogin()){
+                    long time2 =System.currentTimeMillis();
+                    Log.d("时间间隔",(time2-time1)+"");
+                    Bundle bundle01 = new Bundle();
+                    bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+                    IntentUtils.startActivity(getActivity(),"医疗保险>医保信息查询",
+                            new YblxcxFragment(), bundle01);
+                }
+                else {
+                    return;
+                }
+            }
+        });
         lin_yiliao_02.setOnClickListener(this);
         lin_yiliao_03.setOnClickListener(this);
         lin_yiliao_04.setOnClickListener(this);
@@ -64,17 +81,6 @@ public class YiliaoFragment extends BaseFragment implements View.OnClickListener
         Bundle bundle01 = new Bundle();
         switch (view.getId()) {
 
-            case R.id.lin_yiliao_01:
-                if (islogin()){
-                    bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
-                    IntentUtils.startActivity(getActivity(),"医疗保险>医疗信息查询",
-                            new YblxcxFragment(), bundle01);
-                }
-                else {
-                return;
-                }
-
-                break;
             case R.id.lin_yiliao_02:
 //                bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
 //                IntentUtils.startActivity(getActivity(),"医疗保险>医保待遇支付信息查询",

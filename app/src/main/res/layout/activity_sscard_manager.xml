@@ -9,6 +9,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_toptitle"
         android:background="@mipmap/logo_title"
         android:layout_marginLeft="100px">
     </TextView>
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_title"
         android:layout_marginTop="50px"
-        android:layout_marginLeft="200px">
+        android:layout_marginLeft="150px">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,8 +42,8 @@
 
         android:id="@+id/cl_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="300px"
-        android:layout_marginTop="100px"
+        android:layout_marginLeft="220px"
+        android:layout_marginTop="70px"
         android:layout_below="@+id/lin_title">
 
     </LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="app_arr_back">
+        <item>返回</item>
+        <item>返回上一级</item>
+        <item>返回上一页</item>
+    </string-array>
+
+    <string-array name="app_arr_song">
+        <item>音频</item>
+        <item>1</item>
+        <item>第1个</item>
+        <item>第一个</item>
+        <item>第一</item>
+        <item>唱一首歌</item>
+        <item>唱首歌</item>
+    </string-array>
+
+    <string-array name="app_arr_dance">
+        <item>舞蹈表演</item>
+        <item>2</item>
+        <item>第2个</item>
+        <item>第二个</item>
+        <item>第二</item>
+        <item>舞蹈</item>
+        <item>跳一支舞</item>
+        <item>跳支舞</item>
+
+    </string-array>
+
+    <string-array name="app_arr_movie">
+        <item>视频</item>
+        <item>3</item>
+        <item>第3个</item>
+        <item>第三个</item>
+        <item>第三</item>
+        <item>打开视频</item>
+    </string-array>
+
+
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

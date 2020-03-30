@@ -17,6 +17,10 @@ import org.jetbrains.annotations.NotNull;
 public class BaseRecognizeListener implements RecognizeListener {
     private static final String TAG = BaseRecognizeListener.class.getSimpleName();
 
+    /***
+     * 识别出来的用户语音
+     * @param recognizeTextBean
+     */
     @Override
     public void onRecognizeText(@NonNull RecognizeTextBean recognizeTextBean) {
         LogUtil.i(TAG, "tvSpeechRecognizeResult: " + recognizeTextBean.getText());
@@ -53,6 +57,11 @@ public class BaseRecognizeListener implements RecognizeListener {
         }
     }
 
+    /**
+     * 后台返回数据
+     * @param grammar
+     * @return
+     */
     @Override
     public boolean onRecognizeResult(@NotNull Grammar grammar) {
         LogUtil.i(TAG, "Grammar = " + grammar.getText());

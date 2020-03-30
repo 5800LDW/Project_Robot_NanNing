@@ -70,7 +70,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_mzmmxbcx">
+                android:background="@mipmap/logo_mzmxbcx2">
 
             </ImageView>
             <TextView
@@ -101,7 +101,7 @@
             </ImageView>
 
             <TextView
-                android:layout_width="105dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20px"
                 android:text="异地医疗费用查询"

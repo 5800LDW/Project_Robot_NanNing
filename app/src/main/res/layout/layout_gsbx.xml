@@ -19,7 +19,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_ybxxcx">
+                android:background="@mipmap/logo_gongshang01">
 
             </ImageView>
             <TextView
@@ -44,7 +44,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_ylxfcx">
+                android:background="@mipmap/logo_gongshang02">
 
             </ImageView>
             <TextView
@@ -70,7 +70,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_mzmmxbcx">
+                android:background="@mipmap/logo_gongshang03">
 
             </ImageView>
             <TextView
@@ -96,7 +96,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_ydylfycx">
+                android:background="@mipmap/logo_gongshang04">
 
             </ImageView>
             <TextView
@@ -121,7 +121,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_sydycx">
+                android:background="@mipmap/logo_gongshang05">
 
             </ImageView>
             <TextView

@@ -38,6 +38,7 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/Theme.MyAppTheme">
 
         <!--        <meta-data-->
@@ -153,16 +154,6 @@
         </activity>
 
         <activity
-            android:name="com.example.xukefeng.musicplayer.MusicListActivity"
-            android:launchMode="singleTop">
-            <meta-data
-                android:name="RECOGNIZE_MODE"
-                android:value="1" />
-
-        </activity>
-
-
-        <activity
             android:name=".IdcardActivity"
             android:launchMode="singleTop">
             <meta-data
@@ -180,6 +171,7 @@
 
         <activity
             android:name=".ReadIdcardActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Base_Translucence_Dialog_Style">
             <meta-data
                 android:name="RECOGNIZE_MODE"
@@ -191,6 +183,7 @@
         </activity>
         <activity
             android:name=".ReadSScardActivity"
+            android:launchMode="singleTop"
             android:theme="@style/Base_Translucence_Dialog_Style">
             <meta-data
                 android:name="RECOGNIZE_MODE"

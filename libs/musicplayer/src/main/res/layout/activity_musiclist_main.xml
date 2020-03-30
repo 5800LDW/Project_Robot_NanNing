@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/base_home_background"
+    android:orientation="vertical">
 
-  <ListView
-      android:layout_marginTop="10dp"
-      android:id="@+id/MusicListView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="5dp"
-      tools:ignore="MissingConstraints">
 
-  </ListView>
+    <include
+        layout="@layout/base_item_page_back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+
+    <LinearLayout
+        style="@style/base_style_relaxation_background"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="@dimen/dimen_margin_3">
+
+        <ListView
+            android:id="@+id/MusicListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="2dp"
+            tools:ignore="MissingConstraints">
+
+        </ListView>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_40"
+        android:alpha="0.5"
         android:text="可通过语音输入歌曲序号或者点击屏幕选择歌曲,语音“返回”返回上一页"
+        android:textColor="@color/c_ceng_2"
+        android:textSize="32dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="32dp"
-        android:alpha="0.5"
-        android:textColor="@color/c_ceng_2"
-         />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintStart_toStartOf="parent" />
+</LinearLayout>

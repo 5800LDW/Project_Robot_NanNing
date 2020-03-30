@@ -13,7 +13,7 @@ public class CardAPICommon {
 
     public static final String yanglao_info = "/sanb/healthCare/selectHealthInfo";//【个人参保信息查询】
 
-    public static final String yanglaolist_info = "/sanb/healthCare/selectPaymentInfo";//养老缴费【个人缴费信息查询】
+    public static final String yanglaolist_info = "/sanb/healthCare/selectPaymentInfo";//【个人缴费信息查询】
 
     public static final String yiliao_HealthCarePaymentInfo = "/sanb/healthCare/selectHealthCarePaymentInfo";//医保待遇支付信息查询
 

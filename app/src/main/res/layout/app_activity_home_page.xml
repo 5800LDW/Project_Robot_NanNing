@@ -4,8 +4,8 @@
     android:id="@+id/flBG"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/app_home_background"
-    tools:background="@drawable/app_home_background">
+    android:background="@drawable/base_home_background"
+    tools:background="@drawable/base_home_background">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                     <TextView
                         android:id="@+id/tvFunction04"
                         style="@style/style_button_text"
-                        tools:text="4.休闲娱乐" />
+                        tools:text="4.多媒体" />
                 </LinearLayout>
 
                 <View

@@ -8,4 +8,6 @@ public class YangLaoInfoBean {
     public String yac084;//是否在职
     public String aac008;//参保状态
 
+    public String aae140;//养老类型
+
 }

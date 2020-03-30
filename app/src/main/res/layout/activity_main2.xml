@@ -5,67 +5,81 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@mipmap/logo_title"
-        android:layout_marginLeft="@dimen/dimen_30">
-    </TextView>
+  <RelativeLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_marginLeft="@dimen/dimen_margin_100"
+      android:layout_marginRight="@dimen/dimen_margin_100">
+      <TextView
+          android:id="@+id/tv_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@mipmap/logo_title"
+          android:layout_marginTop="@dimen/dimen_margin_toptitle"
+          >
+      </TextView>
 
-    <ImageView
-        android:id="@+id/img_bg"
-        android:layout_below="@+id/tv_title"
-        android:layout_width="650dp"
-        android:layout_height="@dimen/dimen_441"
-        android:background="@mipmap/logo_nanning"
-        android:layout_marginTop="@dimen/dimen_30"
-        android:layout_marginLeft="@dimen/dimen_100"></ImageView>
+      <ImageView
+          android:layout_below="@+id/tv_title"
+          android:layout_width="1200px"
+          android:layout_height="770px"
+          android:background="@mipmap/logo_nanning"
+          android:layout_marginTop="50px"></ImageView>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/dimen_90"
-        android:paddingRight="@dimen/dimen_30"
-        android:layout_alignParentRight="true">
-        <Button
-            android:id="@+id/btn_sbkxxcx"
-            android:layout_width="269dp"
-            android:layout_height="80dp"
-            android:background="@mipmap/btn_sbxxcx">
-        </Button>
-        <Button
-            android:id="@+id/btn_ldjy"
-            style="@style/style_button_logo2"
-            android:background="@mipmap/btn_ldjyfw">
-        </Button>
-        <Button
-            android:id="@+id/btn_sbyw"
-            style="@style/style_button_logo2"
-            android:background="@mipmap/btn_sbywjb">
-        </Button>
-        <Button
-            android:id="@+id/btn_sscard_manager"
-            style="@style/style_button_logo2"
-            android:background="@mipmap/btn_sbkgl">
-        </Button>
-        <Button
-            android:id="@+id/btn_qtyw"
-            style="@style/style_button_logo2"
-            android:background="@mipmap/btn_qtywjb">
-        </Button>
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_marginTop="185px"
+          android:layout_alignParentRight="true">
+          <Button
+              android:id="@+id/btn_sbkxxcx"
+              android:layout_width="430px"
+              android:layout_height="135px"
+              android:background="@mipmap/btn_sbxxcx">
+          </Button>
+          <Button
+              android:id="@+id/btn_ldjy"
+              android:layout_width="430px"
+              android:layout_height="135px"
+              android:layout_marginTop="25px"
+              android:background="@mipmap/btn_ldjyfw">
+          </Button>
+          <Button
+              android:id="@+id/btn_sbyw"
+              android:layout_width="430px"
+              android:layout_height="135px"
+              android:layout_marginTop="25px"
+              android:background="@mipmap/btn_sbywjb">
+          </Button>
+          <Button
+              android:id="@+id/btn_sscard_manager"
+              android:layout_width="430px"
+              android:layout_height="135px"
+              android:layout_marginTop="25px"
+              android:background="@mipmap/btn_sbkgl">
+          </Button>
+          <Button
+              android:id="@+id/btn_qtyw"
+              android:layout_width="430px"
+              android:layout_height="135px"
+              android:layout_marginTop="25px"
+              android:background="@mipmap/btn_qtywjb">
+          </Button>
 
-    </LinearLayout>
+      </LinearLayout>
+
+  </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img_bg">
+        android:background="@mipmap/logo_shouyedise"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dimen_10"
-            android:background="@mipmap/logo_shouyedise"
+            android:paddingLeft="@dimen/dimen_margin_100"
             android:layout_alignParentBottom="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -74,7 +88,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginLeft="@dimen/dimen_100"
+                android:paddingBottom="20px"
+                android:paddingTop="10px"
                 android:orientation="vertical">
                 <ImageView
                     style="@style/style_button_logo"
@@ -84,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_black_1"
-                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginTop="5px"
                     android:textSize="16sp"
                     android:text="个人基本信息查询"></TextView>
             </LinearLayout>
@@ -94,6 +109,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
 
+                android:paddingBottom="20px"
+                android:paddingTop="10px"
                 android:layout_marginLeft="@dimen/dimen_40"
                 android:orientation="vertical">
                 <ImageView
@@ -104,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_black_1"
-                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginTop="5px"
                     android:textSize="16sp"
                     android:text="医疗账户收支明细打印"></TextView>
             </LinearLayout>
@@ -114,6 +131,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
 
+                android:paddingBottom="20px"
+                android:paddingTop="10px"
                 android:layout_marginLeft="@dimen/dimen_40"
                 android:orientation="vertical">
                 <ImageView
@@ -124,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_black_1"
-                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginTop="5px"
                     android:textSize="16sp"
                     android:text="业务办理结果打印"></TextView>
             </LinearLayout>
@@ -134,6 +153,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
 
+                android:paddingBottom="20px"
+                android:paddingTop="10px"
                 android:layout_marginLeft="@dimen/dimen_40"
                 android:orientation="vertical">
                 <ImageView
@@ -144,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_black_1"
-                    android:layout_marginTop="@dimen/dimen_10"
+                    android:layout_marginTop="5px"
                     android:textSize="16sp"
                     android:text="参保缴费证明打印"></TextView>
             </LinearLayout>
@@ -157,7 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:paddingBottom="@dimen/dimen_50"
-            android:layout_marginRight="@dimen/dimen_150"
+            android:layout_marginRight="@dimen/dimen_200"
             android:orientation="vertical">
 
             <LinearLayout
@@ -192,7 +213,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:paddingBottom="@dimen/dimen_50"
-            android:layout_marginRight="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_60"
             android:orientation="vertical">
 
             <LinearLayout
@@ -209,7 +230,7 @@
                     android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_text_login"
+                    android:text="登录"
                     android:layout_marginLeft="@dimen/dimen_10"
                     android:textColor="#fff"
                     android:textSize="20sp">
@@ -230,11 +251,11 @@
             android:textSize="16sp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="@dimen/dimen_50"
+            android:layout_marginRight="@dimen/dimen_60"
             android:paddingBottom="@dimen/dimen_20"
             android:layout_marginTop="@dimen/dimen_10"
             android:textColor="@color/c_black_1"
-            android:text="1213123123">
+            android:text="">
 
         </TextView>
 

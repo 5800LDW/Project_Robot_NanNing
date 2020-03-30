@@ -20,6 +20,7 @@ import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.dance.ActivityManager;
 import com.tecsun.robot.fragment.BaseFragment;
 import com.tecsun.robot.fragment.LoginFragment;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
 
@@ -74,12 +75,10 @@ public class GenericActivity extends MyBaseActivity {
 
         String str=getIntent().getStringExtra(Defs.KEY_TITLE);
 
-        btn_exit.setOnClickListener(new View.OnClickListener() {
+        btn_exit.setOnClickListener(new SingleClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onSingleClick(View v) {
                 if (btn_exit.getText().toString().equals(getString(R.string.app_text_login))){
-
                     Bundle bundle01 = new Bundle();
                     bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                     IntentUtils.startActivity(GenericActivity.this,"登录标题",
@@ -88,7 +87,6 @@ public class GenericActivity extends MyBaseActivity {
                 else{
                     Exit();
                 }
-
             }
         });
         lin_home.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +98,7 @@ public class GenericActivity extends MyBaseActivity {
         lin_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                is_back=false;
                 onBackPressed();
             }
         });
@@ -121,6 +120,7 @@ public class GenericActivity extends MyBaseActivity {
 
     }
 
+    boolean is_back=false;//是否点击了返回键
     protected void initActivityOperate() {
 //        if (mContentFragment != null) {
 //            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -130,7 +130,6 @@ public class GenericActivity extends MyBaseActivity {
 
         if (IntentUtils.mContentFragment != null) {
 
-            Log.d("退出界面","进来替换"+IntentUtils.mContentFragment);
             ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.fl_activity_content, IntentUtils.mContentFragment);
             ft.addToBackStack(null);
@@ -140,8 +139,17 @@ public class GenericActivity extends MyBaseActivity {
             if (str.contains("LoginFragment")){
                 btn_exit.setText(getString(R.string.app_text_exitlogin));
             }
-
+            is_back=true;
+            Log.d("is_back","进行替换fragment"+is_back);
             IntentUtils.mContentFragment = null;
+
+        }
+        else{
+            if (!is_back){
+                Log.d("is_back","关闭fragment"+is_back);
+                finish();//防止打开多个界面
+            }
+
 
         }
     }
@@ -204,6 +212,7 @@ public class GenericActivity extends MyBaseActivity {
             if( getFragmentManager().getBackStackEntryCount() > 1 ){
                 getFragmentManager().popBackStack();
             }else {
+                Log.d("输出返回","输出返回");
                 myFinish();
             }
 

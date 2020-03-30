@@ -1,5 +1,6 @@
 package com.tecsun.robot.nanninig;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,6 +14,8 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +29,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tecsun.jc.base.utils.ToastUtils;
 import com.tecsun.jni.RetInfo;
 import com.tecsun.jni.SSCardReader;
+import com.tecsun.robot.MainApp;
 import com.tecsun.robot.MyBaseActivity;
 import com.tecsun.robot.bean.IDCardBean;
 import com.tecsun.robot.bean.evenbus.IdCardBean;
@@ -41,7 +45,7 @@ import java.util.Iterator;
 /**
  * 读取身份证界面
  * */
-public class ReadIdcardActivity extends MyBaseActivity {
+public class ReadIdcardActivity extends Activity {
     public static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     private UsbManager m_manager;			// USB管理器
     private UsbDevice m_UsbDevice;			// 找到的USB设备
@@ -50,9 +54,8 @@ public class ReadIdcardActivity extends MyBaseActivity {
     public UsbDeviceConnection mDeviceConnection;
     public UsbEndpoint usbEpOut;			//代表一个接口的某个节点的类:写数据节点
     public UsbEndpoint usbEpIn;				//代表一个接口的某个节点的类:读数据节点
-//    private TextView txtView;
-    boolean isRead = false;
-    boolean isStop = false;
+    RetInfo iRetInfo = new RetInfo();
+
 
     Button btn_close;
     ImageView img_sfz;
@@ -60,11 +63,18 @@ public class ReadIdcardActivity extends MyBaseActivity {
 
     boolean Flag_Toast_Login = true;//不重复弹出toast;
 
+
+    //创建线程
+    private Handler hHandler;
+    private boolean mRunning = false;
+    HandlerThread hThread;
+
+    boolean Check_isRuning=true;//读卡器是否在运行中
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_idcard);
-        ActivityManager.getInstance().addActivity(this);
         tv_time = (TextView) findViewById(R.id.tv_time);
         StartTime();
         img_sfz = (ImageView) findViewById(R.id.img_sfz);
@@ -86,17 +96,104 @@ public class ReadIdcardActivity extends MyBaseActivity {
             }
         });
 
-        //延迟1秒让他们看到界面
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                start();
-            }
-        },1000);
+        //初始化身份证信息
+        initidcard();
+
+        if (mDeviceConnection!=null&&usbEpIn!=null&&usbEpOut!=null){
+            mRunning = true;
+            hThread = new HandlerThread("IdcardHandlerThread");
+            hThread.start();//创建一个HandlerThread并启动它
+            hHandler = new Handler(hThread.getLooper());//使用HandlerThread的looper对象创建Handler，如果使用默认的构造方法，很有可能阻塞UI线程
+            hHandler.post(mBackgroundRunnable);//将线程post到Handler中
+        }
+        else{
+            Check_isRuning=false;
+            ToastUtils.INSTANCE.showGravityLongToast(ReadIdcardActivity.this,"读卡器未连接成功");
+        }
 
     }
+    public Handler mHandler=new Handler()
+    {
+        public void handleMessage(Message msg)
+        {
+            switch(msg.what)
+            {
+                case 1:
+                    if (Flag_Toast_Login) {
+                        Flag_Toast_Login = false;
+                        ToastUtils.INSTANCE.showGravityShortToast(ReadIdcardActivity.this,getResources().getString(R.string.login_success));
+                        finish();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+    private Runnable mBackgroundRunnable = new Runnable() {
+        @Override
+        public void run() {
+            // TODO Auto-generated method stub
+            while(true)
+            {
+                if(mRunning == false)
+                    break;
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Log.d("iReadIDOrgData", "iReadIDOrgData start");
+                Log.d ("iReadIDOrgData",iRetInfo.strInfo+"--");
+                iRetInfo = SSCardReader.iReadIDOrgData(iRetInfo);
+                String strOut = "返回码="+String.valueOf(iRetInfo.GetRet()) + "，输出信息为:"+ iRetInfo.GetInfo();
+                Log.d("iReadIDOrgData",strOut);
+                IdCardUtils idCardUtils = new IdCardUtils();
+                IDCardBean idCardBean = idCardUtils.getCard(iRetInfo.GetInfo(),200,ReadIdcardActivity.this);
+                Log.d("iReadIDOrgData", strOut);
+                if (iRetInfo.GetRet() != 0) {
+                    Log.d("iReadIDOrgData","读身份证失败");
+                }else {
+                    Log.d("iReadIDOrgData","读身份证成功");
+                    Log.d("iReadIDOrgData","身份证号:"+idCardBean.getIdCardNo()
+                            +"，姓名:"+idCardBean.getName().trim()+"，民族:"+idCardBean.getNation()
+                            +"，性别:"+idCardBean.getSex());
+                    Log.d("图片",idCardBean.getPhoto()+"");
+                    StaticBean.name=idCardBean.getName().trim();
+                    StaticBean.idcard=idCardBean.getIdCardNo();
+                    Message message = new Message();
+                    message.what=1;
+                    Log.v("身份证信息",idCardBean.getName().trim()+"");
+                    mHandler.sendMessage(message);
+//                   image.setImageBitmap(idCardBean.getPhoto());
+                    //读取成功退出当前界面
 
-    //初始化USB接口
+                }
+            }
+        }
+    };
+
+    /**
+     * 初始化idcard
+     * */
+    public void initidcard(){
+        int iRet = 0;
+        if (!m_IsReaderOpen) {
+            Log.d("权限","读卡器连接失败，请重新连接读卡器并重启该应用！");
+            return;
+        }
+        iRet = SSCardReader.iInitReader(mDeviceConnection, usbEpIn, usbEpOut);
+        Log.d("SSCardReaderDemo", "iInitReader finish");
+        if (iRet != 0) {
+            Log.d("权限","读卡器初始化操作失败");
+            return;
+        }
+    }
+
+    /**
+     * 初始化USB接口
+     * */
     private void initUsbData()throws InterruptedException {
         boolean IsExistReader = false;
         // 获取USB设备
@@ -114,7 +211,6 @@ public class ReadIdcardActivity extends MyBaseActivity {
             }
         }
         if (!IsExistReader) {
-//            txtView.setText("未找到读卡器，请连接读卡器并重启该应用！");
             Log.d("Tag","未找到读卡器，请连接读卡器并重启该应用！");
             return;
         }
@@ -190,111 +286,20 @@ public class ReadIdcardActivity extends MyBaseActivity {
         }
     }
 
-    class ReadThread extends Thread {
-        @Override
-        public void run() {
-
-            while (isRead) {
-                isStop = true;
-                RetInfo iRetInfo = new RetInfo();
-                Log.d("ReadThread", "=====>toreadcard");
-                iRetInfo = SSCardReader.iReadCardBas(3, iRetInfo);
-                if (iRetInfo.GetRet() == 0) {
-                    String strOut = "返回码="+String.valueOf(iRetInfo.GetRet()) + "，输出信息为:"+ iRetInfo.GetInfo();
-                    Log.d("iReadCardBas", strOut);
-                    try {
-                        Thread.sleep(10000);
-                        Log.d("ReadThread", "=====>sleep");
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }
-    }
-   int i=0;
-
-    Handler handler=new Handler();
-    Runnable runnable;
-    public void start(){
-        runnable = new Runnable(){
-            @Override
-            public void run(){
-                i=i++;
-                Log.d("定时器",i+"");
-                initView();
-                //延迟1秒执行
-                handler.postDelayed(this, 1000);
-            }
-        };
-        handler.post(runnable);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
         StopTime();
-        handler.removeCallbacksAndMessages(null);
+        if (Check_isRuning){
+            //关闭读取身份证线程
+            mRunning = false;
+            hThread.quit();
+            mHandler.removeCallbacks(mBackgroundRunnable);
+        }
+
+        EventBus.getDefault().post(new IdCardBean(3));
     }
 
-    private void initView() {
-
-        RetInfo iRetInfo = new RetInfo();
-        int iRet = 0;
-
-        if (!m_IsReaderOpen) {
-//            txtView.setText("读卡器连接失败，请重新连接读卡器并重启该应用！");
-            Log.d("权限","读卡器连接失败，请重新连接读卡器并重启该应用！");
-            return;
-        }
-        iRet = SSCardReader.iInitReader(mDeviceConnection, usbEpIn, usbEpOut);
-        Log.d("SSCardReaderDemo", "iInitReader finish");
-        if (iRet != 0) {
-            Log.d("权限","读卡器初始化操作失败");
-//            txtView.setText("读卡器初始化操作失败");
-            return;
-        }
-        Log.d("iReadIDOrgData", "iReadIDOrgData start");
-        Log.d ("iReadIDOrgData",iRetInfo.strInfo+"--");
-//        if (StringUtil.isNullOrEmpty(iRetInfo.strInfo)){
-//            ToastUtils.INSTANCE.showTopShortToast(getApplicationContext(),"读取身份证失败");
-//            finish();
-//            return;
-//        }
-        iRetInfo = SSCardReader.iReadIDOrgData(iRetInfo);
-        String strOut = "返回码="+String.valueOf(iRetInfo.GetRet()) + "，输出信息为:"+ iRetInfo.GetInfo();
-//        txtView.setText(strOut);
-        Log.d("iReadIDOrgData",strOut);
-        IdCardUtils idCardUtils = new IdCardUtils();
-        IDCardBean idCardBean = idCardUtils.getCard(iRetInfo.GetInfo(),200,this);
-        Log.d("iReadIDOrgData", strOut);
-        if (iRetInfo.GetRet() != 0) {
-            Log.d("iReadIDOrgData","读身份证失败");
-//            txtView.setText("读身份证失败");
-        }else {
-            Log.d("iReadIDOrgData","读身份证成功");
-//            txtView.setText("读身份证成功");
-           Log.d("iReadIDOrgData","身份证号:"+idCardBean.getIdCardNo()
-                    +"，姓名:"+idCardBean.getName().trim()+"，民族:"+idCardBean.getNation()
-                    +"，性别:"+idCardBean.getSex());
-            Log.d("图片",idCardBean.getPhoto()+"");
-            StaticBean.name=idCardBean.getName().trim();
-            StaticBean.idcard=idCardBean.getIdCardNo();
-//            StaticBean.name="徐树仁";
-//            StaticBean.idcard="360734199403150017";
-            if (Flag_Toast_Login) {
-                Flag_Toast_Login = false;
-                ToastUtils.INSTANCE.showGravityShortToast(this, getString(R.string.login_success));
-                EventBus.getDefault().post(new IdCardBean(1));
-                this.finish();
-            }
-//            image.setImageBitmap(idCardBean.getPhoto());
-            //读取成功退出当前界面
-
-        }
-    }
 
 
 
@@ -325,7 +330,8 @@ public class ReadIdcardActivity extends MyBaseActivity {
 
         @Override
         public void onFinish() {
-            ActivityManager.getInstance().exit();
+            finish();
+            EventBus.getDefault().post(new IdCardBean(3));
         }
     };
 }

@@ -2,6 +2,9 @@ package com.tecsun.robot.nanninig;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +13,7 @@ import com.google.gson.Gson;
 import com.sanbot.opensdk.beans.FuncConstant;
 import com.sanbot.opensdk.function.beans.FaceRecognizeBean;
 import com.sanbot.opensdk.function.beans.speech.Grammar;
+import com.sanbot.opensdk.function.unit.DesktopMotionManager;
 import com.sanbot.opensdk.function.unit.HardWareManager;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.InfrareListener;
 import com.sanbot.opensdk.function.unit.interfaces.hardware.PIRListener;
@@ -18,6 +22,7 @@ import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import com.tecsun.jc.base.common.BaseConstant;
 import com.tecsun.robot.builder.ListeningAnimationBuilder;
 import com.tecsun.robot.builder.WelcomeSpeakBuilder;
+import com.tecsun.robot.nanning.builder.TimeBuilder;
 import com.tecsun.robot.nanning.lib_base.BaseActivity;
 import com.tecsun.robot.nanning.lib_base.BaseRecognizeListener;
 import com.tecsun.robot.nanning.util.DeviceUtil;
@@ -31,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
+import static com.tecsun.robot.nanning.lib_base.BuildConfig.isRelease;
 
 /**
  * 主页
@@ -122,7 +128,7 @@ public final class HomePageActivity extends BaseActivity {
 
         LogUtil.e(TAG, DeviceUtil.getDeviceInfo());
 
-        registerNetWorkMonitor(null,null);
+        registerNetWorkMonitor(null, null);
     }
 
     @Override
@@ -188,15 +194,21 @@ public final class HomePageActivity extends BaseActivity {
 
             @Override
             public boolean onRecognizeResult(@NotNull Grammar grammar) {
-                LogUtil.e("TAG!!!!",">>>>>>>>>>>>>>>>>>>>>>>> onRecognizeResult");
-                //不过滤关灯指令
-                if (grammar.getText().startsWith("{") && grammar.getText().endsWith("}") && grammar.getText().contains("关灯")) {
-                    return false;
-                }
+//                LogUtil.e("TAG!!!!", ">>>>>>>>>>>>>>>>>>>>>>>> onRecognizeResult");
+//                //不过滤关灯指令
+//                if (grammar.getText().startsWith("{") && grammar.getText().endsWith("}") && grammar.getText().contains("关灯")) {
+//                    return false;
+//                }
                 return true;
             }
         });
     }
+
+    private Handler mFaceHandler = new Handler(Looper.myLooper());
+    private static Long internalFaceTime = 0L;
+
+    private long vipCount = 0;
+    private long normal = 0;
 
     private final void setHardWareManager() {
         if (hardWareManager != null) {
@@ -204,23 +216,68 @@ public final class HomePageActivity extends BaseActivity {
             hdCameraManager.setMediaListener(new FaceRecognizeListener() {
                 @Override
                 public void recognizeResult(List<FaceRecognizeBean> list) {
-                    StringBuilder sb = new StringBuilder();
+//                    StringBuilder sb = new StringBuilder();
+//                    for (FaceRecognizeBean bean : list) {
+//                        sb.append(new Gson().toJson(bean));
+//                        sb.append("\n");
+//
+//                        runOnUiThread(() -> {
+//                            //识别到人脸, 自动唤醒;
+//                            speechManagerWakeUp();
+//
+//                            wsb.setStateWorking();
+//                            //不需要空闲态和工作态区分了, 从其他页面返回主页面也会主动询问;
+////                        if (wsb.getCurrentState() == STATE_FREE) {
+//                            wsb.delaySpeak(bean);
+////                        }
+//                        });
+//                    }
+//                    LogUtil.e(TAG, "人脸识别回调 >>>>>>>>>>>>>>>>" + sb.toString());
+
+
                     for (FaceRecognizeBean bean : list) {
-                        sb.append(new Gson().toJson(bean));
-                        sb.append("\n");
 
-                        runOnUiThread(() -> {
-                            //识别到人脸, 自动唤醒;
-                            speechManagerWakeUp();
+                        long localInternal = System.currentTimeMillis() - internalFaceTime;
+                        if ((localInternal > 50) ||
+                                (!TextUtils.isEmpty(bean.getUser()) && localInternal > 20)) {
 
-                            wsb.setStateWorking();
-                            //不需要空闲态和工作态区分了, 从其他页面返回主页面也会主动询问;
-//                        if (wsb.getCurrentState() == STATE_FREE) {
-                            wsb.delaySpeak(bean);
-//                        }
-                        });
+                            internalFaceTime = System.currentTimeMillis();
+                            mFaceHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    //识别到人脸, 自动唤醒;
+//                                  speechManagerWakeUp();
+
+                                    wsb.setStateWorking();
+                                    //不需要空闲态和工作态区分了, 从其他页面返回主页面也会主动询问;
+//                                  if (wsb.getCurrentState() == STATE_FREE) {
+                                    wsb.delaySpeak(bean);
+//                                 }
+                                }
+                            });
+                        }
                     }
-                    LogUtil.e(TAG, "人脸识别回调 >>>>>>>>>>>>>>>>" + sb.toString());
+
+
+                    if (!isRelease) {
+                        StringBuilder sb = new StringBuilder();
+                        for (FaceRecognizeBean bean : list) {
+                            sb.append(new Gson().toJson(bean));
+                            sb.append("\n");
+
+                            if (TextUtils.isEmpty(bean.getUser())) {
+                                vipCount++;
+                                LogUtil.e(TAG, "人脸识别回调 >>>>>>>>>>>>>>>>" + sb.toString());
+                                LogUtil.e(TAG, " vipCount >>>>>>>>>>>>>>>>" + vipCount);
+                                LogUtil.e(TAG, " normal >>>>>>>>>>>>>>>>" + normal);
+                            } else {
+                                normal++;
+                            }
+                        }
+
+                    }
+
                 }
             });
 
@@ -255,6 +312,9 @@ public final class HomePageActivity extends BaseActivity {
 //                    }
                 }
             });
+
+            //关闭白光灯
+            hardWareManager.switchWhiteLight(false);
         }
     }
 
@@ -277,20 +337,26 @@ public final class HomePageActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         myStopSpeak();
+        mFaceHandler.removeCallbacksAndMessages(null);
         super.onDestroy();
         ExitUtils.INSTANCE.exit();
+
     }
 
     private void skipNext(String voiceTXT) {
 //        wsb.setStateWorking();
         if (voiceTXT != null) {
             if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_function1_keyword))) {
+                wsb.stop();
                 speakText(getResources().getString(R.string.app_text_information), () -> ll01.performClick());
             } else if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_function2_keyword))) {
+                wsb.stop();
                 speakText(getResources().getString(R.string.app_text_handle), () -> ll02.performClick());
             } else if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_function3_keyword))) {
+                wsb.stop();
                 speakText(getResources().getString(R.string.app_text_policies), () -> ll03.performClick());
             } else if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_function4_keyword))) {
+                wsb.stop();
                 speakText(getResources().getString(R.string.app_text_recreation), () -> ll04.performClick());
             }
         }
@@ -306,6 +372,24 @@ public final class HomePageActivity extends BaseActivity {
 
     private void speakText(String str, SpeakComplete listener) {
         speakAndCheckComplete("好的," + str, listener);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //点击间隔改为700毫秒
+        SingleClickListener.setTimeInterval(800L);
+        //计时器释放
+        if(TimeBuilder.INSTANCE!=null){
+            TimeBuilder.INSTANCE.removeBiz();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        DesktopMotionManager desktopManager = (DesktopMotionManager)getUnitManager(FuncConstant.DESKTOPMOTION_MANAGER);
+//        desktopManager.doReset();
     }
 }
 

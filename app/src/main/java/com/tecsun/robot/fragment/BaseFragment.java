@@ -1,13 +1,18 @@
 package com.tecsun.robot.fragment;
 
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
+import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.dance.ActivityManager;
 import com.tecsun.robot.fragment.dialog.WarningDialogFragment;
 import com.tecsun.robot.nanninig.GenericActivity;
+import com.tecsun.robot.utils.IntentUtils;
+import com.tecsun.robot.utils.StaticBean;
 
 /**
  * 父类的fragment
@@ -125,6 +130,20 @@ public abstract class BaseFragment extends Fragment {
             ActivityManager.getInstance().exit();
         }
     };
+
+    public boolean islogin(){
+        if (TextUtils.isEmpty(StaticBean.idcard)) {
+
+            Log.d("登录","登录");
+            Bundle bundle01 = new Bundle();
+            bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+            IntentUtils.startActivity(getActivity(),"登录标题",
+                    new LoginFragment(), bundle01);
+//            startActivity(new Intent(getActivity(), LoginFragment.class));
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public void onDestroy() {

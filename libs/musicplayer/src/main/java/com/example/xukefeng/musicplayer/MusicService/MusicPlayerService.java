@@ -16,16 +16,16 @@ import android.os.Build;
 import android.os.IBinder;
 import android.widget.RemoteViews;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+
 import com.example.xukefeng.musicplayer.LrcDealClass.AudioControl;
 import com.example.xukefeng.musicplayer.MusicPlay;
 import com.example.xukefeng.musicplayer.PackageClass.MusicInfo;
 import com.example.xukefeng.musicplayer.R;
 
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 
 
 /**
@@ -251,7 +251,7 @@ public class MusicPlayerService extends Service {
     如果点击的歌曲和当前歌曲不一致则停止之前的歌曲，并且播放新的歌曲
     如果点击的歌曲和当前歌曲一直，则不做处理重新播放处理，但需要做同步处理
      */
-    public  void  setMediaPlayer(MediaPlayer mediaPlayerr)
+    public  void  setMediaPlayer(MediaPlayer mediaPlayerr, boolean recycle)
     {
         /*
         初始为空状态
@@ -267,8 +267,8 @@ public class MusicPlayerService extends Service {
             mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer = mediaPlayerr ;
-            mediaPlayer.setOnPreparedListener(preparedListener);
-//            mediaPlayer.start();
+            mediaPlayer.start();
+//            mediaPlayer.setOnPreparedListener(preparedListener);
             //  Toast.makeText(this , "音乐开始播放" , Toast.LENGTH_SHORT).show();
         }
         //如果点击的歌曲和当前歌曲一致.同步处理
@@ -276,14 +276,20 @@ public class MusicPlayerService extends Service {
         歌词同步和音乐控制进度条同步
          */
         else{
-
-            Intent intent1 = new Intent() ;
-            intent1.setAction("com.xkfeng.MUSCI_BROADCAST") ;
-            intent1.putExtra("currentTime" , mediaPlayer.getCurrentPosition()) ;
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            mediaPlayer = mediaPlayerr ;
-            sendBroadcast(intent1);
+            if(recycle){        //单曲循环
+                mediaPlayer.stop();
+                mediaPlayer.reset();
+                mediaPlayer = mediaPlayerr ;
+                mediaPlayer.start();
+            }else {
+                Intent intent1 = new Intent() ;
+                intent1.setAction("com.xkfeng.MUSCI_BROADCAST") ;
+                intent1.putExtra("currentTime" , mediaPlayer.getCurrentPosition()) ;
+                mediaPlayer.stop();
+                mediaPlayer.reset();
+                mediaPlayer = mediaPlayerr ;
+                sendBroadcast(intent1);
+            }
         }
         /*
         更新前台服务

@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -34,13 +35,12 @@ import com.example.xukefeng.musicplayer.LrcDealClass.LrcView;
 import com.example.xukefeng.musicplayer.MusicService.MusicPlayerService;
 import com.example.xukefeng.musicplayer.PackageClass.LrcContent;
 import com.example.xukefeng.musicplayer.PackageClass.MusicInfo;
-import com.sanbot.opensdk.beans.FuncConstant;
-import com.sanbot.opensdk.function.unit.SpeechManager;
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import com.tecsun.robot.nanning.lib_base.BaseActivity;
 import com.tecsun.robot.nanning.lib_base.BaseRecognizeListener;
 import com.tecsun.robot.nanning.util.pinyin.PinYinUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -121,6 +121,11 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
         try{
             musicInfosList = (List<MusicInfo>) bundle.getSerializable("musicinfo") ;
             position = bundle.getInt("position") ;
+
+            if(musicInfosList == null || !(new File(musicInfosList.get(position).getData()).exists())){
+                myFinish();
+                return;
+            }
            /*
            用输出来检测是否成功获取参数
            */
@@ -152,7 +157,12 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
                    playerService = bind.getService() ;
                    playerService.setIndex(position);
                    playerService.setMusicInfoList(musicInfosList);
-                   playerService.setMediaPlayer(mediaPlayer);
+                   if(musicInfosList.size()==1){
+                       playerService.setMediaPlayer(mediaPlayer,true);
+                   }else {
+                       playerService.setMediaPlayer(mediaPlayer,false);
+                   }
+
                    System.out.println("MUSIC PLAY 服务链接成功") ;
 
             }
@@ -245,14 +255,20 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
             @Override
             public void voiceRecognizeText(String voiceTXT) {
                 //语音监听返回
-                if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_back))) {
-                    setResult(0x01);
-                    myFinish();
-                }else if(PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_backromain))){
-                    setResult(0x00);
-                    myFinish();
-                }
-                else if(PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_next))){
+                if(PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_backromain))){
+                    setResult(0xaa);
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(() -> {
+                        myFinish();
+                    }, 200);
+                } else if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_back))) {
+                    setResult(0xbb);
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(() -> {
+                        myFinish();
+                    }, 200);
+                } else if(PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_next))){
                     //下一首
                     Intent intent = new Intent() ;
                     intent.setAction("com.xkfeng.MUSCI_SWITCH") ;
@@ -320,7 +336,12 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
                 init();
                 playerService.setIndex(position);
                 playerService.setMusicInfoList(musicInfosList);
-                playerService.setMediaPlayer(mediaPlayer);
+                if(size == 1){
+                    playerService.setMediaPlayer(mediaPlayer,true);
+                }else {
+                    playerService.setMediaPlayer(mediaPlayer,false);
+                }
+
             }
         });
         //歌曲时长
@@ -609,7 +630,12 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
                 AudioControl.isPause = false ;
                 playerService.setIndex(position);
                 playerService.setMusicInfoList(musicInfosList);
-                playerService.setMediaPlayer(mediaPlayer);
+                if(musicInfosList.size()==1){
+                    playerService.setMediaPlayer(mediaPlayer,true);
+                }else {
+                    playerService.setMediaPlayer(mediaPlayer,false);
+                }
+
                 //发送广播让前台服务的播放按钮图片也随之改变
                 Intent intentPlay = new Intent("com.xkfeng.MUSCIPLAY_BROADCAST");
                 intentPlay.putExtra("AudioControl" , "AudioControl") ;
@@ -620,12 +646,34 @@ public class MusicPlay extends BaseActivity implements GestureDetector.OnGesture
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //服务解绑
-        unbindService(serviceConnection);
-        //解除注册
-        unregisterReceiver(musicReceiver);
-        unregisterReceiver(switcherReceiver);
-        handler.removeMessages(0x111);
-        handle2.removeMessages(0x112);
+        if(serviceConnection!=null){
+            //服务解绑
+            unbindService(serviceConnection);
+        }
+        if(musicReceiver!=null){
+            //解除注册
+            unregisterReceiver(musicReceiver);
+        }
+        if(switcherReceiver!=null){
+            //服务解绑
+            unregisterReceiver(switcherReceiver);
+        }
+        if(handler!=null){
+            handler.removeMessages(0x111);
+        }
+        if(handle2!=null){
+            handle2.removeMessages(0x112);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(0xbb);
+        setResult(0xbb);
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(() -> {
+            myFinish();
+        }, 200);
+//        super.onBackPressed();
     }
 }

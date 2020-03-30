@@ -1,5 +1,6 @@
 package com.tecsun.robot.nanninig;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Spannable;
@@ -7,21 +8,25 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.text.style.TextAppearanceSpan;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
-import com.sanbot.opensdk.function.beans.FaceRecognizeBean;
 import com.sanbot.opensdk.function.beans.speech.Grammar;
 import com.sanbot.opensdk.function.beans.speech.RecognizeTextBean;
-import com.sanbot.opensdk.function.unit.interfaces.media.FaceRecognizeListener;
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import com.tecsun.robot.adapter.ConsultationAdapter;
 import com.tecsun.robot.bean.sanbao.InitiaDataTopic;
@@ -36,7 +41,6 @@ import com.tecsun.robot.nanning.widget.SingleClickListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
 import static com.tecsun.robot.nanning.builder.TimeBuilder.TIME_1;
@@ -70,6 +74,8 @@ final public class ConsultationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_activity_consultation);
+        //点击间隔改为700毫秒
+        SingleClickListener.setTimeInterval(1200L);
         llBottomQuestions = findViewById(R.id.llBottomQuestions);
         tvAppItemAnswer = findViewById(R.id.tvAppItemAnswer);
         flAppItemAnswer = findViewById(R.id.flAppItemAnswer);
@@ -89,7 +95,8 @@ final public class ConsultationActivity extends BaseActivity {
                 }
         );
 
-        findViewById(R.id.vClose).setOnClickListener(new SingleClickListener() {
+        View vClose = findViewById(R.id.vClose);
+        vClose.setOnClickListener(new SingleClickListener() {
             @Override
             public void onSingleClick(View v) {
                 myFinish();
@@ -136,6 +143,10 @@ final public class ConsultationActivity extends BaseActivity {
                 sendQuestion("退出");
             }
         });
+
+        findViewById(R.id.appItemPageBackTitle).setVisibility(View.GONE);
+        findViewById(R.id.appItemPageBack).setOnClickListener(v -> vClose.performClick());
+
 //        findViewById(R.id.flListener).setOnClickListener(v -> {
 //            speechManagerWakeUp();
 //        });
@@ -163,6 +174,7 @@ final public class ConsultationActivity extends BaseActivity {
                 init();
             }
         }).startBiz();
+
 
     }
 
@@ -244,19 +256,21 @@ final public class ConsultationActivity extends BaseActivity {
             @Override
             public void voiceRecognizeText(String voiceTXT) {
 
-                if (isFinishing()) {
-                    myStopSpeak();
-                }
+                LogUtil.i(TAG, "voiceRecognizeText = " + voiceTXT);
 
                 //计时归零
                 if (timeBuilder != null) {
                     timeBuilder.initTime();
                 }
 
+                if (isFinishing()) {
+                    myStopSpeak();
+                    return;
+                }
+
                 if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_back))) {
                     myFinish();
                 }
-                LogUtil.i(TAG, "voiceRecognizeText = " + voiceTXT);
             }
 
             @Override
@@ -286,7 +300,7 @@ final public class ConsultationActivity extends BaseActivity {
                                 "topic = " + grammar.getTopic() + "\n" +
                                 "打印结束" + "\n");
 
-                if (isSpeaking()) {
+                if (isSpeaking() || isFinishing()) {
                     return true;
                 }
 
@@ -319,7 +333,8 @@ final public class ConsultationActivity extends BaseActivity {
                         InitialDataAnswer initialDataAnswer = new Gson().fromJson(grammar.getInitialData(), InitialDataAnswer.class);
                         LogUtil.e(TAG, ">>>>>>>>>>>>>>>>>>> initialDataAnswer = " + initialDataAnswer);
                         if (initialDataAnswer != null && initialDataAnswer.getResult() != null && initialDataAnswer.getResult().getAns_text() != null) {
-                            return defaultChatBiz(grammar, initialDataAnswer.getResult().getAns_text());
+
+                            return defaultChatBiz(grammar, initialDataAnswer.getResult().getAns_text(), initialDataAnswer.getType());
                         }
                     } catch (Exception e) {
                         LogUtil.e(TAG, e);
@@ -335,7 +350,7 @@ final public class ConsultationActivity extends BaseActivity {
                         answer = grammar.getParams().get("answer") + "";
                     }
                     //普通对话
-                    return defaultChatBiz(grammar, answer);
+                    return defaultChatBiz(grammar, answer, -1);
                 }
             }
 
@@ -354,7 +369,7 @@ final public class ConsultationActivity extends BaseActivity {
     }
 
 
-    private final boolean defaultChatBiz(Grammar grammar, String speakContent) {
+    private final boolean defaultChatBiz(Grammar grammar, String speakContent, int type) {
 
         runOnUiThread(() -> {
 //            String answer = "";
@@ -380,6 +395,14 @@ final public class ConsultationActivity extends BaseActivity {
             tvAppItemAnswer.setMovementMethod(ScrollingMovementMethod.getInstance());
 //            tvAppItemAnswer.setText(answer);
             tvAppItemAnswer.setText(speakContent);
+
+
+            if (type == 1 &&
+                    speakContent.contains("好的") &&
+                    speakContent.contains("退出小话题")) {
+                init();
+            }
+
         });
 
         return true;
@@ -412,7 +435,8 @@ final public class ConsultationActivity extends BaseActivity {
     private Long timeInternal = 0L;
 
     private final BaseQuickAdapter.OnItemClickListener answersItemClickListener = (adapter, view, position) -> {
-        if(System.currentTimeMillis() - timeInternal > 500){
+        if (System.currentTimeMillis() - timeInternal > SingleClickListener.getTimeInterval()) {
+            timeInternal = System.currentTimeMillis();
             if (position < answerBeans.size()) {
                 sendQuestion(answerBeans.get(position).getAnswer());
             }
@@ -421,32 +445,42 @@ final public class ConsultationActivity extends BaseActivity {
 
     private final void setHardWareManager() {
         if (hardWareManager != null) {
-            //人脸识别回调
-            hdCameraManager.setMediaListener(new FaceRecognizeListener() {
-                @Override
-                public void recognizeResult(List<FaceRecognizeBean> list) {
-                    runOnUiThread(() -> {
-                        speechManagerWakeUp();
+//            //人脸识别回调
+//            hdCameraManager.setMediaListener(new FaceRecognizeListener() {
+//                @Override
+//                public void recognizeResult(List<FaceRecognizeBean> list) {
+//                    runOnUiThread(() -> {
+//                        speechManagerWakeUp();
+//
+//                    });
+//                }
+//            });
 
-                    });
-                }
-            });
-
+            //关闭白光灯
+            hardWareManager.switchWhiteLight(false);
         }
     }
+
+
+    private long lastTimeLog = 0;
 
     @Override
     public void myFinish() {
         if (timeBuilder != null) {
             timeBuilder.removeBiz();
         }
-//        super.myFinish();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ConsultationActivity.super.myFinish();
-            }
-        }, 200);
+        //        super.myFinish();
+
+        if (System.currentTimeMillis() - lastTimeLog > SingleClickListener.getTimeInterval()) {
+            lastTimeLog = System.currentTimeMillis();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ConsultationActivity.super.myFinish();
+                }
+            }, 200);
+        }
+
     }
 
     @Override
@@ -456,6 +490,52 @@ final public class ConsultationActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                showLoadingDialog();
+//            }
+//        },2000);
+//
+//    }
+
+    private void showLoadingDialog() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        AppCompatDialog dialog = new AppCompatDialog(this, R.style.TransparentDialogStyle);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        View layout = inflater.inflate(R.layout.app_dialog_loading, null);
+        dialog.addContentView(layout, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        dialog.show();
+
+        View appDialogLoadingFL = dialog.findViewById(R.id.appDialogLoadingFL);
+        appDialogLoadingFL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.TOP);
+//        window.setWindowAnimations(R.style.dialog_animation);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//        window.setAttributes(lp);
+
+        // 前2 个flag设置dialog 显示到状态栏    第三个设置点击dialog以外的蒙层 不抢夺焦点  响应点击事件
+        lp.flags = WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        lp.dimAmount = 0.0f;
+        window.setAttributes(lp);
+
+    }
+
 }
 
 

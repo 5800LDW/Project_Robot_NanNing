@@ -13,9 +13,11 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.tecsun.jc.base.utils.ToastUtils;
 import com.tecsun.robot.bean.evenbus.IdCardBean;
 import com.tecsun.robot.bean.evenbus.IdCardBean2;
 import com.tecsun.robot.bean.evenbus.IsStartTimerBean;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.nanninig.R;
 import com.tecsun.robot.nanninig.ReadIdcardActivity;
 import com.tecsun.robot.nanninig.ReadQrActivity;
@@ -43,7 +45,6 @@ public class LoginFragment extends BaseFragment {
         btn_sfz.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 StopTimer();
                 Intent intent=new Intent(getActivity(),ReadIdcardActivity.class);
                 startActivity(intent);
@@ -52,7 +53,6 @@ public class LoginFragment extends BaseFragment {
         btn_sbk.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 StopTimer();
                 Intent intent=new Intent(getActivity(),ReadSScardActivity.class);
                 startActivity(intent);
@@ -62,22 +62,20 @@ public class LoginFragment extends BaseFragment {
         btn_ewm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 StopTimer();
                 Intent intent=new Intent(getActivity(),ReadQrActivity.class);
                 startActivity(intent);
-//
-//                Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();
-
             }
         });
-
         return mView;
     }
 
 
 
     public void StopTimer(){
+        btn_sfz.setEnabled(false);
+        btn_sbk.setEnabled(false);
+        btn_ewm.setEnabled(false);
         EventBus.getDefault().post(new IsStartTimerBean(0));
     }
 
@@ -85,33 +83,25 @@ public class LoginFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void IdCardBean(IdCardBean idCardBean){
 
-        //延迟1秒让他们看到界面
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+//        //延迟1秒让他们看到界面
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
                 if (getActivity() != null &&!getActivity().isFinishing()){
-                    getActivity().finish();
+                    if (idCardBean.getName()==3){
+                        getActivity().finish();
+                    }else{
+                        ToastUtils.INSTANCE.showGravityShortToast(getActivity(),getString(R.string.login_success));
+                        getActivity().finish();
+                    }
+
                 }
 
-            }
-        },500);
+//            }
+//        },100);
 
 
         Log.d("收到通知1",idCardBean.getName()+"");
-    }
-
-    //接收事件
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void IdCardBean2(IdCardBean2 idCardBean){
-        Log.d("收到通知2",idCardBean.getName()+"");
-        //延迟1秒让他们看到界面
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-               getActivity().finish();
-            }
-        },500);
-
     }
 
 

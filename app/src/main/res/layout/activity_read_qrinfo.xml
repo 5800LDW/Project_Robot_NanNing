@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="@color/c_blue_2"
-                android:text="请使用广西人社APP扫描二维码登录 ">
+                android:text="请在窗口关闭前使用广西人社APP扫描二维码登录 ">
             </TextView>
         </LinearLayout>
         <TextView

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.example.xukefeng.musicplayer.PackageClass.MusicInfo;
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener;
 import com.tecsun.robot.nanning.lib_base.BaseActivity;
 import com.tecsun.robot.nanning.lib_base.BaseRecognizeListener;
+import com.tecsun.robot.nanning.util.ActivityUtils;
 import com.tecsun.robot.nanning.util.pinyin.PinYinUtil;
 
 import java.io.File;
@@ -72,6 +74,12 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_musiclist_main);
 
+        ((TextView)findViewById(R.id.appItemPageBackTitleTV)).setText(getString(R.string.base_text_voice));
+
+        findViewById(R.id.appItemPageBack).setOnClickListener(v ->{
+            myFinish();
+        });
+
         speechManager.setOnSpeechListener(new WakenListener() {
             @Override
             public void onWakeUp() {
@@ -104,41 +112,18 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
         //启动服务
         intent = new Intent() ;
         intent.setClass(MusicListActivity.this , MusicPlayerService.class) ;
-        /*
 
-         */
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            startForegroundService(intent) ;
-//        } else {
-//            startService(intent) ;
-//        }
-//        startService(intent) ;
-        speechManager.setOnSpeechListener(new WakenListener() {
-            @Override
-            public void onWakeUp() {
-
-            }
-
-            @Override
-            public void onSleep() {
-                speechManager.doWakeUp();
-            }
-
-            @Override
-            public void onWakeUpStatus(boolean b) {
-
-            }
-        });
 
         //语音监听结果回调
         speechManager.setOnSpeechListener(new BaseRecognizeListener() {
             @Override
             public void voiceRecognizeText(String voiceTXT) {
 
+                if(!ActivityUtils.isForeground(MusicListActivity.this)){
+                    return;
+                }
                 //语音监听返回
                 if (PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_back))) {
-                    myFinish();
-                }else if(PinYinUtil.isMatch(voiceTXT, getResources().getStringArray(R.array.app_arr_backromain))){
                     myFinish();
                 }
                 else {
@@ -158,6 +143,9 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
                         //绑定需要传递的参数
                         intent.putExtras(bundle) ;
                         intent.setClass(MusicListActivity.this ,MusicPlay.class ) ;
+                        speechManager.cancelSemanticRequest();
+                        speechManager.stopSpeak();
+                        speechManager.doSleep();
                         startActivityForResult(intent, 0xfe);
                     }
                 }
@@ -170,7 +158,7 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
     protected void onDestroy() {
         super.onDestroy();
         //程序退出时，终止服务
-        stopService(intent) ;
+        stopService(intent);
     }
 
     /*
@@ -191,10 +179,14 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
 
         List_map = new ArrayList<Map<String, String>>() ;
         if(mCursor == null || mCursor.getCount()==0){
-            if(!isRobotServiceConnected()){
-                speechManagerWakeUp();
-            }
-            speak("没有搜索到歌曲，请先下载歌曲到机器上面");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (!isRobotServiceConnected()){
+                    }
+                    speak("没有搜索到歌曲，请先下载歌曲到机器上面");
+                }
+            }).start();
             return;
         }
         musicInfos = new ArrayList<>() ;
@@ -308,25 +300,6 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
         String MusicData = musicInfos.get(position).getData();
         System.out.println("THE MUSIC DATA IS " + MusicData);
 
-//        //将点击位置传递给播放界面，在播放界面获取相应的音乐信息再播放。
-//        Bundle bundle = new Bundle() ;
-//        bundle.putInt("position" , position);
-//        bundle.putSerializable("musicinfo" , (Serializable) getMusicInfos());
-//        Intent intent = new Intent() ;
-//        //绑定需要传递的参数
-//        intent.putExtras(bundle) ;
-//        intent.setClass(this ,MusicPlay.class ) ;
-//        startActivity(intent);
-
-//        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(this, new DefaultTrackSelector());
-//        DefaultDataSourceFactory defaultDataSourceFactory = new DefaultDataSourceFactory(this, "audio/mpeg"); //  userAgent -> audio/mpeg  不能为空
-//        ConcatenatingMediaSource concatenatingMediaSource = new ConcatenatingMediaSource(); //创建一个媒体连接源
-//        ExtractorMediaSource mediaSource1 = new ExtractorMediaSource.Factory(defaultDataSourceFactory)
-//                .createMediaSource(Uri.parse(MusicData)); //创建一个播放数据源
-//        concatenatingMediaSource.addMediaSource(mediaSource1);
-//        player.setPlayWhenReady(true);
-//        player.prepare(concatenatingMediaSource);
-
         startService(intent) ;
                 //将点击位置传递给播放界面，在播放界面获取相应的音乐信息再播放。
         Bundle bundle = new Bundle() ;
@@ -336,13 +309,16 @@ public class MusicListActivity extends BaseActivity implements AdapterView.OnIte
         //绑定需要传递的参数
         intent.putExtras(bundle) ;
         intent.setClass(this ,MusicPlay.class ) ;
+        speechManager.cancelSemanticRequest();
+        speechManager.stopSpeak();
+        speechManager.doSleep();
         startActivityForResult(intent, 0xfe);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0xfe && resultCode == 0x00){    //返回主页
+        if(requestCode == 0xfe && resultCode == 0xaa){    //返回主页
             myFinish();
         }
     }

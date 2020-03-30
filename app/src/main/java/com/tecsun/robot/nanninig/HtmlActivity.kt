@@ -19,9 +19,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
-import com.sanbot.opensdk.function.beans.FaceRecognizeBean
+import android.widget.TextView
 import com.sanbot.opensdk.function.beans.speech.Grammar
-import com.sanbot.opensdk.function.unit.interfaces.media.FaceRecognizeListener
 import com.sanbot.opensdk.function.unit.interfaces.speech.WakenListener
 import com.tecsun.jc.base.common.BaseConstant
 import com.tecsun.robot.nanning.lib_base.BaseActivity
@@ -31,17 +30,22 @@ import com.tecsun.robot.nanning.widget.TitleBar
 import com.tecsun.robot.nanning.widget.TitleBar.hasLollipop
 
 class HtmlActivity : BaseActivity(), DownloadListener {
+
     private val TAG = HtmlActivity::class.java.simpleName
+
     private var webView: WebView? = null
+
     private var progressBar: ProgressBar? = null
+
     private val url = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
 //        openFullScreenModel()
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.app_activity_html)
-        val url = intent.getStringExtra("url")?: BaseConstant.URL_POLICIES_AND_REGULATIONS
-        val mTitle = intent.getStringExtra("title")?:"政策法规"
+        val url = intent.getStringExtra("url") ?: BaseConstant.URL_POLICIES_AND_REGULATIONS
+        val mTitle = intent.getStringExtra("title") ?: "政策法规"
         Log.i("url---------", url)
 //        initToolbar()
 //        toolbar.setNavigationOnClickListener(View.OnClickListener {
@@ -52,6 +56,13 @@ class HtmlActivity : BaseActivity(), DownloadListener {
 //            }
 //        })
 //        title.setText(mTitle ?: "")
+
+        findViewById<View>(R.id.appItemPageBackIVLeft).visibility = View.INVISIBLE
+        findViewById<View>(R.id.appItemPageBackIVRight).visibility = View.INVISIBLE
+        findViewById<TextView>(R.id.appItemPageBackTitleTV).text = mTitle
+        findViewById<View>(R.id.appItemPageBack).setOnClickListener {
+            myFinish()
+        }
 
         webView = findViewById<View>(R.id.webview) as WebView
 
@@ -150,7 +161,7 @@ class HtmlActivity : BaseActivity(), DownloadListener {
             return
         }
 //        if (hasKitKat()) {
-            titleBar.setImmersive(false)
+        titleBar.setImmersive(false)
 //        }
         titleBar.setBackgroundColor(resources.getColor(R.color.c_2358ff))
 //        titleBar.setLeftImageResource(R.drawable.ic_title_back)
@@ -290,11 +301,16 @@ class HtmlActivity : BaseActivity(), DownloadListener {
 
     private fun setHardWareManager() {
         if (hardWareManager != null) { //人脸识别回调
-            hdCameraManager.setMediaListener(object : FaceRecognizeListener {
-                override fun recognizeResult(list: List<FaceRecognizeBean>) {
-                    runOnUiThread { speechManagerWakeUp() }
-                }
-            })
+//            hdCameraManager.setMediaListener(object : FaceRecognizeListener {
+//                override fun recognizeResult(list: List<FaceRecognizeBean>) {
+//                    runOnUiThread {
+//                        speechManagerWakeUp()
+//                    }
+//                }
+//            })
+
+            //关闭白光灯
+            hardWareManager.switchWhiteLight(false)
         }
     }
 }

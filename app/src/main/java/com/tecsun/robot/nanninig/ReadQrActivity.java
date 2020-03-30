@@ -42,7 +42,6 @@ public class ReadQrActivity extends MyBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_qrinfo);
 
-        ActivityManager.getInstance().addActivity(this);
         btn_close = (Button) findViewById(R.id.btn_close);
         tv_time = (TextView) findViewById(R.id.tv_time);
         webview = (WebView) findViewById(R.id.webview);
@@ -111,9 +110,8 @@ public class ReadQrActivity extends MyBaseActivity {
                 StaticBean.idcard=resultBean.data.AAC002;
                 if (Flag_Toast_Login){
                     Flag_Toast_Login=false;
-                    ToastUtils.INSTANCE.showGravityShortToast(this,getString(R.string.login_success));
-                    EventBus.getDefault().post(new IdCardBean(1));
                     this.finish();
+                    EventBus.getDefault().post(new IdCardBean(1));
                 }
 
             }
@@ -164,6 +162,7 @@ public class ReadQrActivity extends MyBaseActivity {
         super.onDestroy();
         StopTime();
         handler.removeCallbacksAndMessages(null);
+        EventBus.getDefault().post(new IdCardBean(3));
     }
 
 
@@ -194,7 +193,8 @@ public class ReadQrActivity extends MyBaseActivity {
 
         @Override
         public void onFinish() {
-            ActivityManager.getInstance().exit();
+            finish();
+            EventBus.getDefault().post(new IdCardBean(3));
         }
     };
 

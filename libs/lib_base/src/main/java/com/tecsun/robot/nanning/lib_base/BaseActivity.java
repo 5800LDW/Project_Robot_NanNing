@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -62,6 +63,8 @@ public class BaseActivity extends TopBaseActivity {
 
     private boolean isWakeUpSpeechManager = true;
 
+    private Thread conThread;
+
     public void setWakeUpSpeechManager(boolean wakeUpSpeechManager) {
         isWakeUpSpeechManager = wakeUpSpeechManager;
     }
@@ -71,6 +74,7 @@ public class BaseActivity extends TopBaseActivity {
      */
     @Override
     protected void onMainServiceConnected() {
+        conThread = Thread.currentThread();
         Log.e("TAG", getClass() + "   onMainServiceConnected() ======");
         isRobotServiceConnected = true;
         onRobotServiceConnected();
@@ -124,6 +128,11 @@ public class BaseActivity extends TopBaseActivity {
     protected void myStartActivity(Class cls) {
         speechManager.cancelSemanticRequest();
         startActivity(new Intent(this, cls));
+    }
+
+    public void myStartActivity(Intent intent) {
+        speechManager.cancelSemanticRequest();
+        startActivity(intent);
     }
 
     public final void showToast(String str) {

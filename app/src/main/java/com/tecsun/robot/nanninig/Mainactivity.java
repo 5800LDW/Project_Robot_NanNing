@@ -17,6 +17,7 @@ import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.LoginFragment;
 import com.tecsun.robot.fragment.SSCardManageFragment;
 import com.tecsun.robot.fragment.SScardQueryFragment;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
 
@@ -50,6 +51,7 @@ public class Mainactivity extends MyBaseActivity {
         lin_ywbl = (LinearLayout) findViewById(R.id.lin_ywbl);
         lin_cbjf = (LinearLayout) findViewById(R.id.lin_cbjf);
         lin_back = (LinearLayout) findViewById(R.id.lin_back);
+        SingleClickListener.setTimeInterval(500L);
         lin_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,41 +102,38 @@ public class Mainactivity extends MyBaseActivity {
         });
 
         btn_sscard_manager = (Button) findViewById(R.id.btn_sscard_manager);
-        lin_login.setOnClickListener(new View.OnClickListener() {
+        lin_login.setOnClickListener(new SingleClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onSingleClick(View v) {
                 login();
-
             }
         });
         //社保卡信息查询
-        btn_sbkxxcx.setOnClickListener(new View.OnClickListener() {
+        btn_sbkxxcx.setOnClickListener(new SingleClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onSingleClick(View v) {
                 Bundle bundle02 = new Bundle();
                 bundle02.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                 IntentUtils.startActivity(Mainactivity.this,"",
                         sScardQueryActivity, bundle02);
-
             }
         });
         //社保卡管理
-        btn_sscard_manager.setOnClickListener(new View.OnClickListener() {
+        btn_sscard_manager.setOnClickListener(new SingleClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onSingleClick(View v) {
 
                 Bundle bundle02 = new Bundle();
                 bundle02.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                 IntentUtils.startActivity(Mainactivity.this,"",
                         ssCardManageActivity, bundle02);
-
             }
         });
     }
     @Override
     protected void onResume() {
         super.onResume();
-        tv_name.setText(TextUtils.isEmpty(StaticBean.name)?"":"欢迎你，"+StaticBean.name);
+        tv_name.setText(TextUtils.isEmpty(StaticBean.name)?"":"欢迎您，"+StaticBean.name);
         if (!TextUtils.isEmpty(StaticBean.name)){
             tv_login.setText(getString(R.string.app_text_exitlogin));
         }
@@ -214,5 +213,12 @@ public class Mainactivity extends MyBaseActivity {
             tv_name.setText(StaticBean.name);
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        StaticBean.clear();
+//        SingleClickListener.setTimeInterval(500L);
     }
 }

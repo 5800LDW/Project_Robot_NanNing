@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -24,18 +23,13 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.tecsun.jc.base.utils.ToastUtils;
 import com.tecsun.jni.RetInfo;
 import com.tecsun.jni.SSCardReader;
-import com.tecsun.robot.bean.evenbus.IdCardBean;
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.sscardmanager.ChangepasswordFragment;
 import com.tecsun.robot.nanninig.R;
-import com.tecsun.robot.nanninig.ReadSScardActivity;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -65,7 +59,7 @@ public class ReadSSCardFragment extends BaseFragment{
         mView = inflater.inflate(R.layout.activity_read_fmidcard, container, false);
 
         img_sfz = (ImageView) mView.findViewById(R.id.img_sfz);
-        Glide.with(getActivity()).load(R.mipmap.logo_dqsbk)
+        Glide.with(getActivity()).load(R.mipmap.logo_insert_ssd)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).into(img_sfz);
 
         if (getArguments() != null) {
@@ -286,7 +280,7 @@ public class ReadSSCardFragment extends BaseFragment{
             Bundle bundle = new Bundle();
             bundle.putInt(Defs.OPTION_ID, Defs.CHANGE_SSCARD_PASSWORD);
             bundle.putString(Defs.OPTION_NAME, "修改社保卡密码");
-            IntentUtils.startActivity(getActivity(),"社保卡管理>修改社保卡密码",
+            IntentUtils.startActivity(getActivity(),"社保卡管理",
                     new ChangepasswordFragment(), bundle);
 
         }

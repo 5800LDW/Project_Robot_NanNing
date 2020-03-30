@@ -7,8 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_home_background"
-        tools:background="@drawable/app_home_background">
+        android:background="@drawable/base_home_background"
+        tools:background="@drawable/base_home_background">
 
         <!--    <Button-->
         <!--        android:id="@+id/vClose"-->
@@ -79,7 +79,7 @@
                 android:layout_marginRight="@dimen/dimen_consultation_margin"
                 android:layout_marginBottom="@dimen/dimen_consultation_margin"
                 android:layout_weight="1"
-                android:background="@drawable/app_shape_round_white_bg"
+                android:background="@drawable/base_shape_round_white_bg"
                 android:orientation="vertical">
 
 
@@ -269,6 +269,11 @@
         android:layout_height="112dp"
         android:layout_gravity="bottom|center_horizontal" />
 
+
+    <include
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        layout="@layout/base_item_page_back_button"/>
 </FrameLayout>
 
 

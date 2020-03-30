@@ -16,6 +16,7 @@
     </string-array>
 
     <string-array name="app_arr_function1_keyword">
+        <item>业务咨询</item>
         <item>1</item>
         <item>第1个</item>
         <item>第一个</item>
@@ -24,12 +25,12 @@
         <item>查询</item>
         <item>我要咨询</item>
         <item>业务查询</item>
-        <item>业务咨询</item>
         <item>我要查询</item>
         <item>办事指南</item>
     </string-array>
 
     <string-array name="app_arr_function2_keyword">
+        <item>业务办理</item>
         <item>2</item>
         <item>第2个</item>
         <item>第二个</item>
@@ -37,33 +38,28 @@
         <item>办理</item>
 <!--        <item>经办</item>-->
 <!--        <item>业务经办</item>-->
-        <item>业务办理</item>
         <item>办理业务</item>
         <item>我要办理</item>
     </string-array>
 
     <string-array name="app_arr_function3_keyword">
+        <item>政策法规</item>
         <item>3</item>
         <item>第3个</item>
         <item>第三个</item>
         <item>第三</item>
-        <item>政策法规</item>
         <item>政策</item>
         <item>查政策</item>
         <item>政策规定</item>
     </string-array>
 
     <string-array name="app_arr_function4_keyword">
+        <item>多媒体</item>
+        <item>打开多媒体</item>
         <item>4</item>
         <item>第4个</item>
         <item>第四个</item>
         <item>第四</item>
-        <item>唱歌</item>
-        <item>跳舞</item>
-        <item>唱歌跳舞</item>
-        <item>休闲娱乐</item>
-        <item>休闲</item>
-        <item>娱乐</item>
     </string-array>
 
     <string-array name="app_arr_log_out">
@@ -76,11 +72,11 @@
         <item>首页</item>
     </string-array>
 
-    <string-array name="app_arr_back">
-        <item>返回上一级</item>
-        <item>返回上一页</item>
-        <item>返回</item>
-    </string-array>
+<!--    <string-array name="app_arr_back">-->
+<!--        <item>返回</item>-->
+<!--        <item>返回上一级</item>-->
+<!--        <item>返回上一页</item>-->
+<!--    </string-array>-->
 
     <string-array name="app_exitlogin_back">
         <item>退出登录</item>
@@ -95,28 +91,6 @@
         <item>登录</item>
     </string-array>
 
-
-    <string-array name="app_arr_song">
-        <item>1</item>
-        <item>第1个</item>
-        <item>第一个</item>
-        <item>第一</item>
-        <item>唱歌</item>
-        <item>唱一首歌</item>
-        <item>唱首歌</item>
-        <item>歌唱</item>
-    </string-array>
-
-    <string-array name="app_arr_dance">
-        <item>2</item>
-        <item>第2个</item>
-        <item>第二个</item>
-        <item>第二</item>
-        <item>舞蹈</item>
-        <item>跳一支舞</item>
-        <item>跳支舞</item>
-        <item>跳舞</item>
-    </string-array>
 
 
 </resources>

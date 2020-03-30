@@ -35,7 +35,7 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
 
     private final int INT_NORMAL_USER = 1;
 
-    private final long LONG_SPEAK_INTERNAL = 15 * 1000;
+    private final long LONG_SPEAK_INTERNAL = 16 * 1000;
 
     private final long collectTimeInternal = 1300;
 
@@ -97,7 +97,7 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
         }
 
         //普通
-        if (bean != null && TextUtils.isEmpty(bean.getUser()) && internalTimeLocal > LONG_SPEAK_INTERNAL) {
+        if (bean != null && TextUtils.isEmpty(bean.getUser()) && internalTimeLocal > (LONG_SPEAK_INTERNAL + collectTimeInternal)) {
             isVip = false;
             lastSpeakLogTime = System.currentTimeMillis();
             mHandler.removeCallbacks(runnable);
@@ -123,7 +123,7 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
         }
     }
 
-    boolean isVip = false;
+    boolean isVip = true;
 
     private Runnable runnable = () -> {
         //停止说话
@@ -134,6 +134,8 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
             //唤醒
             baseActivity.speechManagerWakeUp();
 
+            LogUtil.e(TAG, ">>>>>>>>>>>>>>>>>>>  speechManagerWakeUp()");
+
         };
 
         if (lLong.size() == 0 || lBean.size() == 0 || lLong.get(INT_FIND_USER) == null || lBean.get(INT_FIND_USER) == null) {
@@ -141,6 +143,7 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
         } else if (System.currentTimeMillis() - lLong.get(INT_FIND_USER) > collectTimeInternal * 2) {
             baseActivity.speakAndCheckComplete(String.format(baseActivity.getResources().getString(R.string.app_welcome), getRandomText()), speakComplete);
         } else if (lBean.get(INT_FIND_USER) != null) {
+            isVip = true;
             baseActivity.speakAndCheckComplete(String.format(baseActivity.getResources().getString(R.string.app_welcome_user),
                     lBean.get(INT_FIND_USER).getUser(), getRandomText()), speakComplete);
         }
@@ -232,10 +235,13 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
 
     }
 
+
     @Override
     protected void onPause() {
         Log.e(TAG, "onPause()");
         stateHandler.sendEmptyMessage(STATE_PAUSE);
+        mHandler.removeCallbacks(runnable);
+        mHandler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -244,6 +250,13 @@ public class WelcomeSpeakBuilder extends BaseBuilder {
         super.onDestroy();
         stateHandler.removeCallbacks(checkRunnable);
         stateHandler.removeCallbacksAndMessages(null);
+    }
+
+    public void stop() {
+        isVip = true;
+        lastSpeakLogTime = System.currentTimeMillis();
+        mHandler.removeCallbacks(runnable);
+        mHandler.removeCallbacksAndMessages(null);
     }
 
 }

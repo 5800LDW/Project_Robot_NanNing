@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20px"
                 android:text="养老保险信息查询">
 
@@ -52,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20px"
                 android:text="养老保险缴费明细查询">
 
@@ -78,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20px"
                 android:text="养老待遇发放信息查询">
 <!--                android:text="个人养老金年度明细查询"-->
@@ -98,7 +101,7 @@
             <ImageView
                 android:layout_width="130px"
                 android:layout_height="130px"
-                android:background="@mipmap/logo_ylbx4">
+                android:background="@mipmap/logo_jbyljjfysb">
 
             </ImageView>
             <TextView
@@ -106,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20px"
                 android:text="基本养老金记发月数表">
 
@@ -132,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="20px"
                 android:text="养老历年缴费信息查询">
 
@@ -161,11 +166,12 @@
 
             </ImageView>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="200px"
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
                 android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
                 android:text="社平重算单位人员花名册">
 
             </TextView>
@@ -187,11 +193,12 @@
 
             </ImageView>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="200px"
                 android:layout_height="wrap_content"
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
                 android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
                 android:text="机关养老个人缴费明细查询">
 
             </TextView>
@@ -219,6 +226,7 @@
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
                 android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
                 android:text="机关事业单位退休人员领取基本养老金查询">
 
             </TextView>
@@ -246,6 +254,7 @@
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
                 android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
                 android:text="机关事业单位社会保险个人缴费信息查询">
 
             </TextView>
@@ -272,6 +281,7 @@
                 android:textColor="@color/c_black_1"
                 android:textSize="15sp"
                 android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
                 android:text="转移信息综合查询">
 
             </TextView>

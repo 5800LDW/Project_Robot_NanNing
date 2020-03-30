@@ -9,4 +9,23 @@
     <color name="c_9fabcb">#9fabcb</color>
 
 
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="white">#fff</color>
+    <color name="c_black_2">#4e4e4e</color>
+    <color name="c_017eff">#017eff</color>
+
+    <color name="c_black_1">#1c1c1c</color>
+    <color name="c_blue_1">#23ade5</color>
+    <color name="c_blue_2">#008fff</color>
+
+    <color name="c_ceng_2">#FFB13F</color>
+    <color name="c_gray_1">#F7F7F7</color>
+    <color name="c_fdbd02">#fdbd02</color>
+    <color name="c_0e93f5">#0e93f5</color>
+
+    <color name="c_2358ff">#2591ff</color>
+
 </resources>

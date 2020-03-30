@@ -13,19 +13,40 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name=".MusicListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MusicListActivity"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <meta-data
+                android:name="FORBID_TOUCH"
+                android:value="true" />
         </activity>
         <activity
             android:name=".MusicPlay"
             android:exported="true"
             android:launchMode="singleTask">
+
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+
+            <meta-data
+                android:name="FORBID_TOUCH"
+                android:value="true" />
+
         </activity>
-        <activity android:name=".MusicSetting"></activity>
+        <activity android:name=".MusicSetting">
+            <meta-data
+                android:name="RECOGNIZE_MODE"
+                android:value="1" />
+
+            <meta-data
+                android:name="FORBID_TOUCH"
+                android:value="true" />
+            
+        </activity>
 
         <service android:name=".MusicService.MusicPlayerService"></service>
 

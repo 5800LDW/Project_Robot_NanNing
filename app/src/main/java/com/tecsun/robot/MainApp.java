@@ -7,9 +7,9 @@ import android.util.Log;
 import androidx.fragment.app.FragmentActivity;
 import androidx.multidex.MultiDexApplication;
 
+import com.example.kmy.CEPP_Dri;
 import com.sanbot.dance_play.DanceInterface;
 import com.sanbot.dance_play.DanceManager;
-//import com.squareup.leakcanary.LeakCanary;
 import com.tecsun.tsb.network.manager.NetworkManager;
 import com.tecsun.tsb.network.retrofit.RetrofitAPIImpl;
 
@@ -33,14 +33,14 @@ public class MainApp extends MultiDexApplication {
     public static FragmentActivity mFragmentActivity;
     private static DanceManager manager = null;
 
-//    public static String IP = "10.190.149.110"; //内网
+    //    public static String IP = "10.190.149.110"; //内网
 //    public static int ID = 8283; //内网
     //广西外网
-//    public static String IP = "116.10.194.35";
-//    public static int ID = 9393;
+    public static String IP = "116.10.194.35";
+    public static int ID = 9393;
     //公司转发
-    public static String IP = "61.28.113.182";
-    public static int ID = 9395;
+//    public static String IP = "61.28.113.182";
+//    public static int ID = 9395;
 
 
     //    public static String IP = "192.168.1.153";
@@ -60,6 +60,7 @@ public class MainApp extends MultiDexApplication {
         return instance;
     }
 
+    public  static CEPP_Dri cepp_dri;
     public DanceManager getManager(){
         return manager;
     }
@@ -74,6 +75,7 @@ public class MainApp extends MultiDexApplication {
         ctx = getApplicationContext();
 //        manager = SanbotDanceManager.Companion.getInstance();
 //        manager.init();
+        cepp_dri=new CEPP_Dri();
         DanceManager.init(this);
         manager = DanceManager.getSelf();
         manager.setCallBack(new DanceInterface() {
@@ -115,8 +117,6 @@ public class MainApp extends MultiDexApplication {
 //        if (!AppUtils.copyApkFromAssets(this, "/mnt/sdcard/", "KeyBoard.ini")) {
 //            LogUtil.e("!!!!!! 金融配置文件拷贝失败！ 请检查文件是否存在");
 //        }
-
-//        LeakCanary.install(this);
     }
 //
 //    /**

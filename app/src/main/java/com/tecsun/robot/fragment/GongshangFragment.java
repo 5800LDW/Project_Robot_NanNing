@@ -11,9 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.tecsun.robot.common.Defs;
+import com.tecsun.robot.fragment.gongshang.GsbxjfmxFragment;
+import com.tecsun.robot.fragment.yanglao.YbbxgrjfxxFragment;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.nanninig.R;
+import com.tecsun.robot.utils.IntentUtils;
 
-/**工商保险查询界面*/
+/**工伤保险查询界面*/
 public class GongshangFragment extends BaseFragment implements View.OnClickListener {
     public View mView;
     LinearLayout lin_gs_01,lin_gs_02,lin_gs_03,lin_gs_04,lin_gs_05;
@@ -30,7 +35,20 @@ public class GongshangFragment extends BaseFragment implements View.OnClickListe
         lin_gs_02.setOnClickListener(this);
         lin_gs_03.setOnClickListener(this);
         lin_gs_04.setOnClickListener(this);
-        lin_gs_05.setOnClickListener(this);
+        lin_gs_05.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                if (islogin()){
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+                    IntentUtils.startActivity(getActivity(),"养老保险>工伤保险缴费明细查询",
+                            new GsbxjfmxFragment(), bundle);
+                }
+                else {
+                    return;
+                }
+            }
+        });
         return mView;
     }
 
@@ -49,9 +67,7 @@ public class GongshangFragment extends BaseFragment implements View.OnClickListe
             case R.id.lin_gs_04:
                 Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.lin_gs_05:
-                Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();
-                break;
+
         }
     }
 

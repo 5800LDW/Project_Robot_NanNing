@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_list_video"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_home_background">
+
+    <include
+        android:id="@+id/llTitle"
+        layout="@layout/base_item_page_back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.tecsun.jc.base.widget.corner.RoundCornerFrameLayout
+        style="@style/base_style_relaxation_background"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llTitle"
+        android:layout_marginBottom="@dimen/dimen_margin_3"
+        android:clickable="false"
+        app:roundBottomLeft="true"
+        app:roundBottomRight="true"
+        app:roundTopLeft="true"
+        app:roundTopRight="true"
+        android:paddingTop="5dp"
+        app:roundedCornerRadius="10dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/videoRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ViewStub
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/video_item_empty_list"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/video_full_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.tecsun.jc.base.widget.corner.RoundCornerFrameLayout>
+
+</RelativeLayout>

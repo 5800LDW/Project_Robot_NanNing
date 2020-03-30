@@ -29,4 +29,15 @@
         <item name="android:backgroundDimAmount">0.5</item>
         <item name="android:windowCloseOnTouchOutside">false</item>
     </style>
+
+    <style name="base_style_relaxation_background">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">450dp</item>
+        <item name="android:layout_marginLeft">@dimen/dimen_margin_3</item>
+        <item name="android:layout_marginRight">@dimen/dimen_margin_3</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/base_shape_round_white_bg</item>
+    </style>
+
 </resources>

@@ -21,7 +21,7 @@
     <string name="app_text_information">业务咨询</string>
     <string name="app_text_handle">业务办理</string>
     <string name="app_text_policies">政策法规</string>
-    <string name="app_text_recreation">休闲娱乐</string>
+    <string name="app_text_recreation">@string/base_text_recreation</string>
 
     <string name="app_text_function01">1.%1$s</string>
     <string name="app_text_function02">2.%1$s</string>
@@ -34,7 +34,7 @@
     <string name="app_text_login">登录</string>
     <string name="app_text_exitlogin">退出登录</string>
     <string name="password_change_success">密码修改成功</string>
-    <string name="password_two">2次密码不一致，请重新输入新密码</string>
+    <string name="password_two">2次密码不一致，请重新输入新设密码</string>
     <string name="password_six">请输入6位密码</string>
     <string name="login_success">登录成功</string>
     <string name="tip_not_query_info">未查到相关信息</string>

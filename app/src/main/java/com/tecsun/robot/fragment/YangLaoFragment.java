@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 
 import com.tecsun.robot.common.Defs;
 import com.tecsun.robot.fragment.yanglao.YbbxffmxFragment;
+import com.tecsun.robot.fragment.yanglao.YbbxgrjfxxFragment;
 import com.tecsun.robot.fragment.yanglao.YbbxjfmxFragment;
 import com.tecsun.robot.fragment.yanglao.YblxxxFragment;
+import com.tecsun.robot.nanning.widget.SingleClickListener;
 import com.tecsun.robot.nanninig.R;
 import com.tecsun.robot.utils.IntentUtils;
 import com.tecsun.robot.utils.StaticBean;
@@ -40,43 +42,11 @@ public class YangLaoFragment extends BaseFragment implements View.OnClickListene
         lin_yl_08 = (LinearLayout) mView.findViewById(R.id.lin_yl_08);
         lin_yl_09 = (LinearLayout) mView.findViewById(R.id.lin_yl_09);
         lin_yl_10 = (LinearLayout) mView.findViewById(R.id.lin_yl_10);
-        lin_yl_01.setOnClickListener(this);
-        lin_yl_02.setOnClickListener(this);
-        lin_yl_03.setOnClickListener(this);
-        lin_yl_04.setOnClickListener(this);
-        lin_yl_05.setOnClickListener(this);
-        lin_yl_06.setOnClickListener(this);
-        lin_yl_07.setOnClickListener(this);
-        lin_yl_08.setOnClickListener(this);
-        lin_yl_09.setOnClickListener(this);
-        lin_yl_10.setOnClickListener(this);
-
-        return mView;
-    }
-
-
-    public boolean islogin(){
-        if (TextUtils.isEmpty(StaticBean.idcard)) {
-
-            Log.d("登录","登录");
-            Bundle bundle01 = new Bundle();
-            bundle01.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
-            IntentUtils.startActivity(getActivity(),"登录标题",
-                    new LoginFragment(), bundle01);
-//            startActivity(new Intent(getActivity(), LoginFragment.class));
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void onClick(View view) {
-
-
-        Bundle bundle = new Bundle();
-        switch (view.getId()){
-            case R.id.lin_yl_01:
+        lin_yl_01.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
                 if (islogin()){
+                    Bundle bundle = new Bundle();
                     Log.d("点击养老保险1","点击养老保险1");
                     bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                     IntentUtils.startActivity(getActivity(),"养老保险>养老保险信息查询",
@@ -86,9 +56,13 @@ public class YangLaoFragment extends BaseFragment implements View.OnClickListene
                     return;
                 }
 
-                break;
-            case R.id.lin_yl_02:
+            }
+        });
+        lin_yl_02.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
                 if (islogin()){
+                    Bundle bundle = new Bundle();
                     bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                     IntentUtils.startActivity(getActivity(),"养老保险>养老保险缴费明细查询",
                             new YbbxjfmxFragment(), bundle);
@@ -96,10 +70,13 @@ public class YangLaoFragment extends BaseFragment implements View.OnClickListene
                 else {
                     return;
                 }
-
-                break;
-            case R.id.lin_yl_03:
+            }
+        });
+        lin_yl_03.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
                 if (islogin()){
+                    Bundle bundle = new Bundle();
                     bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
                     IntentUtils.startActivity(getActivity(),"养老保险>养老待遇发放信息查询",
                             new YbbxffmxFragment(), bundle);
@@ -107,9 +84,42 @@ public class YangLaoFragment extends BaseFragment implements View.OnClickListene
                 else {
                     return;
                 }
+            }
+        });
+        lin_yl_04.setOnClickListener(this);
+        lin_yl_05.setOnClickListener(this);
+        lin_yl_06.setOnClickListener(this);
+        lin_yl_07.setOnClickListener(this);
+        lin_yl_08.setOnClickListener(this);
+        lin_yl_09.setOnClickListener(new SingleClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                if (islogin()){
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Defs.OPTION_ID, Defs.CANCEL_REPORT_LOSS);
+                    IntentUtils.startActivity(getActivity(),"养老保险>机关事业单位社会保险个人缴费信息查询",
+                            new YbbxgrjfxxFragment(), bundle);
+                }
+                else {
+                    return;
+                }
+            }
+        });
+        lin_yl_10.setOnClickListener(this);
+
+        return mView;
+    }
 
 
-                break;
+
+    @Override
+    public void onClick(View view) {
+
+
+        Bundle bundle = new Bundle();
+        switch (view.getId()){
+
+
             case R.id.lin_yl_04:
                 Toast.makeText(getActivity(),getString(R.string.Toast_Intent),Toast.LENGTH_SHORT).show();
 

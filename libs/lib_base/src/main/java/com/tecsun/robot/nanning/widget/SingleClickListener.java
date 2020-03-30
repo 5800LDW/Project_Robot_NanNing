@@ -5,15 +5,13 @@ import android.view.View;
 
 
 /**
- *
  * 间隔时间内只允许单次点击
  *
  * @author liudongwen
- * @version
  * @date 2019/05/29
  */
 public abstract class SingleClickListener implements View.OnClickListener {
-    private static long  mLastClickTime;
+    private static long mLastClickTime;
     /**
      * 间隔的点击时间
      */
@@ -23,11 +21,11 @@ public abstract class SingleClickListener implements View.OnClickListener {
 
     }
 
-    public long getTimeInterval() {
+    public static final long getTimeInterval() {
         return timeInterval;
     }
 
-    public void setTimeInterval(long t) {
+    public static final void setTimeInterval(long t) {
         timeInterval = t;
     }
 
@@ -44,6 +42,7 @@ public abstract class SingleClickListener implements View.OnClickListener {
 
     /**
      * 间隔时间内只允许单次点击
+     *
      * @param v
      */
     public abstract void onSingleClick(View v);

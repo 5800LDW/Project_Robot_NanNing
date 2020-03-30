@@ -1,4 +1,12 @@
 <resources>
     <string name="base_text_wakeup">金宝金宝</string>
     <string name="base_text_network_fail">网络不给力，请检查网络设置。</string>
+    <string name="base_text_recreation">多媒体</string>
+    
+    <string name="base_text_voice_with_num">1.音频播放</string>
+    <string name="base_text_voice">音频播放</string>
+    <string name="base_text_dance_with_num">2.舞蹈表演</string>
+    <string name="base_text_dance">舞蹈表演</string>
+    <string name="base_text_movie_with_num">3.视频播放</string>
+    <string name="base_text_movie">视频播放</string>
 </resources>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_home_background"
+    android:orientation="horizontal">
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="@dimen/dimen_margin_left_1"-->
+    <!--        android:layout_marginTop="@dimen/dimen_margin_top_1"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <ImageButton-->
+    <!--            android:id="@+id/image_retrun"-->
+    <!--            android:layout_width="@dimen/dimen_size_pic"-->
+    <!--            android:layout_height="@dimen/dimen_size_pic"-->
+    <!--            android:background="@drawable/button_return_selector" />-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/llTitle"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginTop="@dimen/dimen_margin_top_1"-->
+    <!--        android:layout_marginBottom="@dimen/dimen_margin_top_1"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="@dimen/dimen_size_1"-->
+    <!--            android:layout_height="@dimen/dimen_size_1"-->
+    <!--            android:src="@mipmap/ic_title_left_side" />-->
+
+    <!--        <TextView-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginLeft="15dp"-->
+    <!--            android:layout_marginRight="15dp"-->
+    <!--            android:text="@string/app_text_recreation"-->
+    <!--            android:textColor="@color/white"-->
+    <!--            android:textSize="42dp" />-->
+
+    <!--        <ImageView-->
+    <!--            android:layout_width="@dimen/dimen_size_1"-->
+    <!--            android:layout_height="@dimen/dimen_size_1"-->
+    <!--            android:src="@mipmap/ic_title_right_side" />-->
+    <!--    </LinearLayout>-->
+
+    <include
+        android:id="@+id/llTitle"
+        layout="@layout/base_item_page_back_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        style="@style/base_style_relaxation_background"
+        android:layout_below="@+id/llTitle">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.6" />
+
+        <FrameLayout
+            android:id="@+id/fonction1"
+            style="@style/app_style_container_relaxation">
+
+            <ImageView
+                style="@style/app_style_iv_relaxation"
+                android:background="@drawable/app_icon_frequency" />
+
+            <TextView
+                style="@style/app_style_tv_relaxation"
+                android:text="@string/base_text_voice_with_num" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/fonction2"
+            style="@style/app_style_container_relaxation">
+
+            <ImageView
+                style="@style/app_style_iv_relaxation"
+                android:background="@drawable/app_icon_dance" />
+
+            <TextView
+                style="@style/app_style_tv_relaxation"
+                android:text="@string/base_text_dance_with_num" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/fonction3"
+            style="@style/app_style_container_relaxation">
+
+            <ImageView
+                style="@style/app_style_iv_relaxation"
+                android:background="@drawable/app_icon_movice" />
+
+            <TextView
+                style="@style/app_style_tv_relaxation"
+                android:text="@string/base_text_movie_with_num" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.6" />
+
+    </LinearLayout>
+
+
+    <include
+        layout="@layout/item_button_listener"
+        android:layout_width="960dp"
+        android:layout_height="112dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom|center_horizontal" />
+
+</RelativeLayout>
